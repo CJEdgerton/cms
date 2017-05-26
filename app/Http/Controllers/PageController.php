@@ -57,6 +57,8 @@ class PageController extends Controller
      */
     public function show(Page $page)
     {
+        $this->authorize('view', $page);
+
         return view('content-management.pages.show')->with('page', $page);
     }
 
@@ -68,9 +70,7 @@ class PageController extends Controller
      */
     public function edit(Page $page)
     {
-        // Extract this later
-        if( (auth()->id() != $page->created_by) && (! auth()->user()->is_admin) )
-            return redirect()->route('pages.show', ['id' => $page->id]);
+        $this->authorize('update', $page);
 
         return view('content-management.pages.edit')->with('page', $page);
     }
@@ -84,9 +84,7 @@ class PageController extends Controller
      */
     public function update(UpdatesPage $request, Page $page)
     {
-        // Extract this later
-        if( (auth()->id() != $page->created_by) && (! auth()->user()->is_admin) )
-            return redirect()->route('pages.show', ['id' => $page->id]);
+        $this->authorize('update', $page);
 
         $request->update($page);
 
@@ -102,9 +100,7 @@ class PageController extends Controller
      */
     public function destroy(Page $page)
     {
-        // Extract this later
-        if( (auth()->id() != $page->created_by) && (! auth()->user()->is_admin) )
-            return redirect()->route('pages.show', ['id' => $page->id]);
+        $this->authorize('delete', $page);
          
         $page->delete();
 
