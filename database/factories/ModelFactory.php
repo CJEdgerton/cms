@@ -36,11 +36,11 @@ $factory->define(App\Page::class, function (Faker\Generator $faker) {
 		'slug'         => $slug,
 		'path'         => $path,
 		'description'  => $faker->paragraph,
-		'content'      => $faker->randomHtml(2,3),
+		'main_content' => $faker->randomHtml(2,3),
 		'created_at'   => $faker->dateTime(),
 		'created_by'   => returnRandomId('App\User'),
 		'active'       => $active, 
 		'activated_at' => $active ? $faker->dateTime() : null,
-		'activated_by'  => $active ? returnRandomId('App\User') : null,
+		'activated_by' => $active ? returnRandomId('App\User') : null,
     ];
 });

@@ -16,18 +16,33 @@ Route::get('/', function () {
 });
 
 // Authentication Routes...
-$this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
-$this->post('login', 'Auth\LoginController@login');
-$this->post('logout', 'Auth\LoginController@logout')->name('logout');
+	$this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
+	$this->post('login', 'Auth\LoginController@login');
+	$this->post('logout', 'Auth\LoginController@logout')->name('logout');
 
-// Registration Routes...
-$this->get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-$this->post('register', 'Auth\RegisterController@register');
+	// Registration Routes...
+	$this->get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+	$this->post('register', 'Auth\RegisterController@register');
 
-// Password Reset Routes...
-$this->get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
-$this->post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-$this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
-$this->post('password/reset', 'Auth\ResetPasswordController@reset');
+	// Password Reset Routes...
+	$this->get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+	$this->post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+	$this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+	$this->post('password/reset', 'Auth\ResetPasswordController@reset');
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+// Pages
+	Route::resource('content-management/pages', 'PageController');
+
+// Content
+
+    // Can use this if we want each page to use the same template.
+	Route::get('{url_path}', [
+	    'uses' => 'PageController@showPage' 
+	])->where('url_path', '([A-Za-z0-9\-\/]+)');
+
+    // Can use this is we want each page to have it's own file.
+	// Route::get('{url_path}', [
+	//     'uses' => 'PageController@getPage' 
+	// ])->where('url_path', '([A-Za-z0-9\-\/]+)');

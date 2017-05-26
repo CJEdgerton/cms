@@ -15,7 +15,6 @@
 </head>
 <body>
     <div id="app">
-        @include('content-management.menus.top_nav')
         <div class="container">
             @yield('content')
         </div>

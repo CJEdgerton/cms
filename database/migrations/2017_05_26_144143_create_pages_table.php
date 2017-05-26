@@ -23,7 +23,7 @@ class CreatePagesTable extends Migration
             $table->text('description')
                 ->nullable();
 
-            $table->text('content')
+            $table->text('main_content')
                 ->nullable();
 
             $table->timestamp('created_at');
