@@ -1,6 +1,5 @@
-#Nameless CMS
+# Nameless CMS
 
-##TODO
+## TODO
 
-- Make migrations
-- Make seeds
+Create Layouts
