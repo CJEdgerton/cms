@@ -1,3 +1,6 @@
-TODO
+#Nameless CMS
 
-Make migrations
+##TODO
+
+- Make migrations
+- Make seeds
