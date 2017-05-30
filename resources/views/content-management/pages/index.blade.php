@@ -49,9 +49,9 @@
         </tbody>
     </table>
 
-    {{-- {{ $pages->links() }} --}}
+    {{ $pages->links() }}
 
     {{-- <a href="{{ route('pages.create') }}" class="btn btn-primary pull-right mt-22">Create Page</a> --}}
-    <a href="#" class="btn btn-primary pull-right mt-22">Create Page</a>
+    <a href="{{ route('pages.create') }}" class="btn btn-primary pull-right mt-22">Create Page</a>
 </div>
 @endsection

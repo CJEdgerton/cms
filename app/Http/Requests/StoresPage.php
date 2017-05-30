@@ -38,12 +38,17 @@ class StoresPage extends FormRequest
         $page = Page::create([
             'name'         => $this->name, 
             'slug'         => str_slug($this->name),
-            'path'         => $this->path . str_slug($this->name),
+            'path'         => $this->preparePath(),
             'description'  => $this->description, 
             'main_content' => $this->main_content, 
             'created_by'   => auth()->id(),
         ]);
 
         return $page;
+    }
+
+    protected function preparePath()
+    {
+        return '/' . strtolower( str_replace(' ', '-', $this->path ) . '/' . str_slug($this->name) );
     }
 }

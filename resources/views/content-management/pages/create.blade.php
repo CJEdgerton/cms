@@ -21,7 +21,11 @@
 
             <div class="form-group">
                 <label for="path">Path</label>                        
-                <input type="text" name="path" class="form-control" value="{{ old('path') }}" required>
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">hr.fsu.edu/</span>
+                    <input type="text" name="path" class="form-control" value="{{ old('path') }}" required>
+                </div>
+
                 <p class="help-text">Leave blank if unknown</p>
             </div>
 

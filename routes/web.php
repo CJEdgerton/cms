@@ -37,10 +37,15 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // Content
 
+	// Route to preview a page
+	Route::get('preview/{url_path}', [
+	    'uses' => 'PageController@showPagePreview' 
+	])->where('url_path', '([A-Za-z0-9\-\/]+)')->name('pages.preview');
+
     // Can use this if we want each page to use the same template.
 	Route::get('{url_path}', [
 	    'uses' => 'PageController@showPage' 
-	])->where('url_path', '([A-Za-z0-9\-\/]+)');
+	])->where('url_path', '([A-Za-z0-9\-\/]+)')->name('pages.show_public');
 
     // Can use this is we want each page to have it's own file.
 	// Route::get('{url_path}', [

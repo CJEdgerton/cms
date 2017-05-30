@@ -2,7 +2,7 @@
 
 function createPathForPage(Faker\Generator $faker, String $slug)
 {
-	$levels = rand(1,4);
+	$levels = rand(1,2);
 	$path = '/';
 
 	for( $i = 0; $i < $levels; $i++ )

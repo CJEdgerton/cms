@@ -13,7 +13,7 @@ class PageController extends Controller
 
     public function __construct() 
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except('showPage');
     }
     /**
      * Display a listing of the resource.
@@ -23,8 +23,7 @@ class PageController extends Controller
     public function index()
     {
         if( auth()->user()->is_admin )
-            // $pages = Page::latest()->paginate(10);
-            $pages = Page::all();
+            $pages = Page::latest()->paginate(10);
         else
             $pages = Page::where('created_by', auth()->id())->latest()->paginate(10); 
 
@@ -117,7 +116,17 @@ class PageController extends Controller
     // Can use this if we want each page to use the same template.
     public function showPage($url_path = null)
     {
-        $page = Page::where('path', '/' . $url_path)->where('active', 1)->firstOrFail();
+        $page = Page::where('path', '/' . $url_path)->where('active', 1)->first();
+
+        if( is_null($page) )
+            return view('content.page_not_found');
+
+        return view('content.regular_page')->with('page', $page);
+    }
+
+    public function showPagePreview($url_path = null)
+    {
+        $page = Page::where('path', '/' . $url_path)->firstOrFail();
 
         return view('content.regular_page')->with('page', $page);
     }
