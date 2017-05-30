@@ -39,10 +39,15 @@ class UpdatesPage extends FormRequest
         return $page->update([
             'name'         => $this->name, 
             'slug'         => str_slug($this->name),
-            'path'         => $this->path . str_slug($this->name),
+            'path'         => $this->preparePath(),
             'description'  => $this->description, 
             'main_content' => $this->main_content,
             'updated_by'   => auth()->id(),
         ]);
+    }
+
+    protected function preparePath()
+    {
+        return '/' . strtolower( str_replace(' ', '-', $this->path ) . '/' . str_slug($this->name) );
     }
 }

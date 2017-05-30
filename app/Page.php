@@ -12,4 +12,17 @@ class Page extends Model
 	{
 		return $this->belongsTo('App\User', 'created_by');
 	}
+
+	public function formattedPath()
+	{
+
+		$pos = strpos($this->path, '/');
+		$path = $this->path;
+
+		if ($pos !== false) {
+		    $path = substr_replace($path, '', $pos, strlen('/'));
+		}
+
+		return $path;
+	}
 }
