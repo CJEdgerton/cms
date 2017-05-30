@@ -34,7 +34,7 @@ class UpdatesPage extends FormRequest
         ];
     }
 
-    public function update($page)
+    public function update(Page $page)
     {
         return $page->update([
             'name'         => $this->name, 

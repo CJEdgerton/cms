@@ -10,6 +10,11 @@ use App\Http\Requests\DestroysPage;
 
 class PageController extends Controller
 {
+
+    public function __construct() 
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -17,12 +22,13 @@ class PageController extends Controller
      */
     public function index()
     {
-        if( ! auth()->user()->is_admin )
-            $pages = Page::where('created_by', auth()->id())->orderBy('id', 'desc')->paginate(10); 
+        if( auth()->user()->is_admin )
+            // $pages = Page::latest()->paginate(10);
+            $pages = Page::all();
         else
-            $pages = Page::orderBy('id', 'desc')->paginate(10);
+            $pages = Page::where('created_by', auth()->id())->latest()->paginate(10); 
 
-        return view('content-management.home')
+        return view('content-management.pages.index')
             ->with('pages', $pages);
     }
 
