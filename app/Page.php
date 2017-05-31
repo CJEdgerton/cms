@@ -2,11 +2,12 @@
 
 namespace App;
 
+use App\Utilities\PageHelpers;
 use Illuminate\Database\Eloquent\Model;
 
 class Page extends Model
 {
-	protected $fillable = ['name', 'slug', 'path', 'description', 'main_content', 'created_by'];
+	protected $fillable = ['name', 'path', 'description', 'main_content', 'created_by'];
 
 	public function owner()
 	{
@@ -15,14 +16,8 @@ class Page extends Model
 
 	public function formattedPath()
 	{
+		$page_helper = new PageHelpers;
 
-		$pos = strpos($this->path, '/');
-		$path = $this->path;
-
-		if ($pos !== false) {
-		    $path = substr_replace($path, '', $pos, strlen('/'));
-		}
-
-		return $path;
+		return $page_helper->removeLeadingAndTrailingSlashes($this->path);
 	}
 }

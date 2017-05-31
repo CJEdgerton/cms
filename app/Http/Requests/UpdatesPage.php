@@ -3,8 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Page;
-use App\Content;
-
+use App\Utilities\PageHelpers;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdatesPage extends FormRequest
@@ -28,7 +27,7 @@ class UpdatesPage extends FormRequest
     {
         return [
             'name'         => 'string|max:250|required',
-            'path'         => 'string|max:500',
+            'path'         => 'string|max:500|nullable',
             'description'  => 'string|max:500',
             'main_content' => 'string',
         ];
@@ -36,18 +35,14 @@ class UpdatesPage extends FormRequest
 
     public function update(Page $page)
     {
+        $page_helper = new PageHelpers;
+
         return $page->update([
             'name'         => $this->name, 
-            'slug'         => str_slug($this->name),
-            'path'         => $this->preparePath(),
+            'path'         => $page_helper->preparePath( $this->name, $this->path ),
             'description'  => $this->description, 
             'main_content' => $this->main_content,
             'updated_by'   => auth()->id(),
         ]);
-    }
-
-    protected function preparePath()
-    {
-        return '/' . strtolower( str_replace(' ', '-', $this->path ) . '/' . str_slug($this->name) );
     }
 }

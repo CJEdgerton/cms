@@ -28,7 +28,6 @@
         <thead>
             <tr>
                 <th>Name</th>
-                <th>Slug</th>
                 <th>Path</th>
                 <th>Description</th>
                 <th>Created By</th>
@@ -39,7 +38,6 @@
             @foreach($pages as $page)
             <tr>
                 <td><a href="/content-management/pages/{{ $page->id }}">{{ $page->name }}</a></td>
-                <td>{{ $page->slug }}</td>
                 <td>{{ $page->path }}</td>
                 <td>{{ $page->description }}</td>
                 <td>{{ $page->created_by }}</td>

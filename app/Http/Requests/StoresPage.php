@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Page;
+use App\Utilities\PageHelpers;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoresPage extends FormRequest
@@ -26,7 +27,7 @@ class StoresPage extends FormRequest
     {
         return [
             'name'         => 'string|max:250|required',
-            'path'         => 'string|max:500',
+            'path'         => 'string|max:500|nullable',
             'description'  => 'string|max:500',
             'main_content' => 'string',
         ];
@@ -35,20 +36,16 @@ class StoresPage extends FormRequest
     public function store()
     {
 
+        $page_helper = new PageHelpers;
+
         $page = Page::create([
             'name'         => $this->name, 
-            'slug'         => str_slug($this->name),
-            'path'         => $this->preparePath(),
+            'path'         => $page_helper->preparePath( $this->name, $this->path ),
             'description'  => $this->description, 
             'main_content' => $this->main_content, 
             'created_by'   => auth()->id(),
         ]);
 
         return $page;
-    }
-
-    protected function preparePath()
-    {
-        return '/' . strtolower( str_replace(' ', '-', $this->path ) . '/' . str_slug($this->name) );
     }
 }

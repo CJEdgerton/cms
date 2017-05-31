@@ -1,6 +1,5 @@
 @extends('content-management.layouts.app')
 
-
 @section('content')
 
 <h1>Edit Page</h1>
@@ -27,7 +26,7 @@
                 <label for="path">Path</label>
                 <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1">hr.fsu.edu/</span>                
-                    <input type="text" name="path" class="form-control" value="{{ str_replace($page->slug, '', $page->formattedPath() ) }}" required>
+                    <input type="text" name="path" class="form-control" value="{{ $page->formattedPath() }}">
                 </div>
                 <p class="help-text">Leave blank if unknown</p>
             </div>

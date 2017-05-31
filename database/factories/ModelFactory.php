@@ -27,13 +27,11 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Page::class, function (Faker\Generator $faker) {
 	$name   = $faker->sentence;
-	$slug   = str_slug($name);
-	$path   = createPathForPage($faker, $slug);
+	$path   = (new App\Utilities\PageHelpers)->preparePath($name);
 	$active = $faker->boolean();
 
     return [
 		'name'         => $name,
-		'slug'         => $slug,
 		'path'         => $path,
 		'description'  => $faker->paragraph,
 		'main_content' => $faker->randomHtml(2,3),
