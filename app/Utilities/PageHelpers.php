@@ -19,7 +19,7 @@ class PageHelpers
 			return  $this->createPathForPage( str_slug( $name ) );
 		}
 
-		return '/' . $this->removeLeadingAndTrailingSlashes($path);	
+		return '/' . $this->removeLeadingAndTrailingSlashes($this->removeSpaces($path));	
 	}
 
 	public function removeLeadingAndTrailingSlashes($string)
@@ -35,6 +35,11 @@ class PageHelpers
 
 		return implode("", $array);
 
+	}
+
+	public function removeSpaces($string)
+	{
+		return str_replace(" ", "-", $string);
 	}
 
 	protected function createPathForPage(String $slug)

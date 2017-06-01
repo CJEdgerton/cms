@@ -23,9 +23,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $pages = \App\Page::paginate(10);
-
-        return view('content-management.home')
-            ->with('pages', $pages);
+        return redirect()->route('pages.index');
     }
 }

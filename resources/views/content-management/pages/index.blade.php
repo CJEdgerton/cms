@@ -3,20 +3,6 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
-
-                <div class="panel-body">
-                    <p class="lead">
-                        Get Started
-                    </p>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
 
     @if( auth()->user()->is_admin )
         <h1>Pages</h1>
@@ -30,7 +16,10 @@
                 <th>Name</th>
                 <th>Path</th>
                 <th>Description</th>
+
+                @if( auth()->user()->is_admin )
                 <th>Created By</th>
+                @endif
                 <th>Created At</th>
             </tr>
         </thead>
@@ -40,7 +29,9 @@
                 <td><a href="/content-management/pages/{{ $page->id }}">{{ $page->name }}</a></td>
                 <td>{{ $page->path }}</td>
                 <td>{{ $page->description }}</td>
+                @if( auth()->user()->is_admin )
                 <td>{{ $page->created_by }}</td>
+                @endif
                 <td>{{ $page->created_at->format('Y-m-d') }}</td>
             </tr>
             @endforeach

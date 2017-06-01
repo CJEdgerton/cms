@@ -2,52 +2,105 @@
 
 @section('content')
 
-<h1>Create a Page</h1>
-<div class="panel panel-default">
-    <div class="panel-body">
-        <form action="{{ route('pages.store') }}" method="POST">
+<div class="col-md-8 col-md-offset-2">
 
-            {{ csrf_field() }}
+    <h1 class="text-center">Create a Page</h1>
 
-            <div class="form-group">
-                <label for="name">Name</label>                        
-                <input type="text" name="name" class="form-control" value="{{ old('name') }}" required>
+    <ol class="breadcrumb">
+        <li>
+            <a href="#">Home</a>
+        </li>
+        <li>
+            <a href="{{ route('pages.index') }}">Manage Pages</a>
+        </li>
+        <li class="active">
+            Create 
+        </li>
+    </ol>
+
+    <form action="{{ route('pages.store') }}" method="POST">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Page Info</h3>
             </div>
+            <div class="panel-body">
 
-            <div class="form-group">
-                <label for="description">Description</label>                        
-                <textarea name="description" class="form-control" rows="8" required>{{ old('description') }}</textarea>
-            </div>
+                {{ csrf_field() }}
 
-            <div class="form-group">
-                <label for="path">Path</label>                        
-                <div class="input-group">
-                    <span class="input-group-addon" id="basic-addon1">hr.fsu.edu/</span>
-                    <input type="text" name="path" class="form-control" value="{{ old('path') }}">
+                <div class="form-group">
+                    <label for="name">Name</label>                        
+                    <input 
+                        type="text" 
+                        name="name" 
+                        class="form-control" 
+                        value="{{ old('name') }}" 
+                        placeholder="Page Name" 
+                        required>
                 </div>
 
-                <p class="help-text">Leave blank if unknown</p>
+                <div class="form-group">
+                    <label for="description">Description</label>                        
+                    <textarea 
+                        name="description" 
+                        class="form-control" 
+                        rows="3" 
+                        placeholder="Page Description" 
+                        required>{{ old('description') }}</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="path">Path</label>                        
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">hr.fsu.edu/</span>
+                        <input 
+                            type="text" 
+                            name="path" 
+                            class="form-control" 
+                            placeholder="my/page/here" 
+                            value="{{ old('path') }}">
+                    </div>
+
+                    <p class="text-center help-text">Leave blank if unknown</p>
+                </div>
+
+                @if(count($errors))
+                    <ul class="alert alert-danger">
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                @endif
+
             </div>
-
-            <div class="form-group">
-                <label for="main_content">Content</label>                        
-                <textarea name="main_content" class="form-control" rows="8">{{ old('main_content') }}</textarea>
+            <div class="panel-footer clearfix">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-save pull-right">Save</button>
+                    <a href="{{ route('pages.index') }}" class="btn btn-default pull-right">Cancel</a>
+                </div>
             </div>
+        </div>
 
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary">Create</button>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Page Content</h3>
             </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label for="main_content">Tiny MCE Here</label>                        
+                    <textarea name="main_content" class="form-control" rows="8">{{ old('main_content') }}</textarea>
+                </div>
+            </div>
+            <div class="panel-footer clearfix">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-save pull-right">Save</button>
+                    <a href="{{ route('pages.index') }}" class="btn btn-default pull-right">Cancel</a>
+                </div>
+            </div>
+        </div>
 
-            @if(count($errors))
-                <ul class="alert alert-danger">
-                    @foreach($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            @endif
+    </form>
 
-        </form>
-    </div>
 </div>
 
 @endsection
