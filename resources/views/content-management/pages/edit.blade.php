@@ -80,8 +80,8 @@
 
                 <div class="form-group">
 
-                    <a class="btn btn-default" data-toggle="modal" href='#modal-id'>
-                        <span class="glyphicon glyphicon-trash text-danger pull-left"></span>
+                    <a class="btn btn-default pull-left" data-toggle="modal" href='#modal-id'>
+                        <span class="glyphicon glyphicon-trash text-danger"></span>
                         Delete
                     </a>
                     <button 
@@ -111,8 +111,8 @@
 
                 <div class="form-group">
 
-                    <a class="btn btn-default" data-toggle="modal" href='#modal-id'>
-                        <span class="glyphicon glyphicon-trash text-danger pull-left"></span>
+                    <a class="btn btn-default pull-left" data-toggle="modal" href='#modal-id'>
+                        <span class="glyphicon glyphicon-trash text-danger"></span>
                         Delete
                     </a>
 
@@ -138,7 +138,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Delete Page</h4>
+                    <h4 class="modal-title">Delete {{ $page->name }}</h4>
                 </div>
                 <div class="modal-body">
                     <p class="lead">Are you sure you want to delete this page?</p>
@@ -147,11 +147,10 @@
                     <form action="{{ route('pages.destroy', ['id' => $page->id]) }}" method="POST" class="pull-right">
                         {{ csrf_field() }}
                         {{ method_field('DELETE') }}
-                        <button type="submit" class="btn btn-default">
-                            <span class="glyphicon glyphicon-trash text-danger pull-right btn-save"></span>
+                        <button type="submit" class="btn btn-danger btn-save pull-right">
                             Delete
                         </button>
-                        <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Cancel</button>
                     </form>
 
                 </div>

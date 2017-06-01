@@ -1,0 +1,26 @@
+// Helpers
+.btn-save {
+	margin-left: 5px;
+}
+
+.cursor-pointer {
+	cursor: pointer;
+}
+
+.center-vertically {
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    margin: 0px;
+}
+
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+
+.box-shadow {
+    box-shadow: 1px 1px 3px 1px #8d8d8d;
+} 

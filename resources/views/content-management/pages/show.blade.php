@@ -21,10 +21,11 @@
 	<div class="panel panel-default">
 
 		<div class="panel-heading">
-			<h3 class="panel-title">{{ $page->name }}</h3>
+			<h3 class="panel-title">Page Info</h3>
 		</div>
 		<div class="panel-body">
 			<dl class="dl-horizontal">
+				<dt>Page Name:</dt><dd> {{ $page->name }}</dd>
 				<dt>Page Path:</dt><dd> {{ $page->path }}</dd>
 				<dt>Page Description:</dt><dd> {{ $page->description }}</dd>
 				<dt>Created By:</dt><dd> {{ $page->owner->full_name() }}</dd>
@@ -59,7 +60,7 @@
 	<div class="panel panel-default">
 
 		<div class="panel-heading">
-			<h3 class="panel-title">Content</h3>
+			<h3 class="panel-title">Page Content</h3>
 		</div>
 		<div class="panel-body">
 

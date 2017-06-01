@@ -12,11 +12,6 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <style>
-        .btn-save {
-            margin-left: 5px;
-        }
-    </style>
 </head>
 <body>
     <div id="app">

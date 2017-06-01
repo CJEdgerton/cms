@@ -1,4 +1,3 @@
-
 // Fonts
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
 
@@ -7,3 +6,19 @@
 
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+// Custom Helper Classes
+@import "helpers/colors/background";
+@import "helpers/colors/text";
+@import "helpers/generic";
+@import "helpers/spacing/margin";
+@import "helpers/spacing/padding";
+
+body {
+	/* For fixed navbar */
+	// padding-top: 80px;
+}
+
+.btn-save {
+    margin-left: 5px;
+}
