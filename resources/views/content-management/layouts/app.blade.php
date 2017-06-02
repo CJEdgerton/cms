@@ -14,7 +14,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="app">
+    <div>
         @include('content-management.menus.top_nav')
         <div class="container">
             @yield('content')
