@@ -35,6 +35,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 // Pages
 	Route::resource('content-management/pages', 'PageController');
 
+// Users
+	Route::resource('content-management/users', 'UserController');
+
 // Content
 
 	// Route to preview a page

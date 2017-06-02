@@ -51,16 +51,16 @@ class PageCrudTest extends TestCase
     	$this->post(route('pages.store'))
     		->assertRedirect('login');
         
-    	$this->get(route('pages.show', ['id', $page->id]))
+    	$this->get(route('pages.show', ['id' => $page->id]))
     		->assertRedirect('login');
         
-    	$this->get(route('pages.edit', ['id', $page->id]))
+    	$this->get(route('pages.edit', ['id' => $page->id]))
     		->assertRedirect('login');
         
-    	$this->patch(route('pages.update', ['id', $page->id]))
+    	$this->patch(route('pages.update', ['id' => $page->id]))
     		->assertRedirect('login');
         
-    	$this->delete(route('pages.destroy', ['id', $page->id]))
+    	$this->delete(route('pages.destroy', ['id' => $page->id]))
     		->assertRedirect('login');
     }
 
