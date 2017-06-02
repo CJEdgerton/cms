@@ -21,68 +21,30 @@
 	<div class="panel panel-default">
 
 		<div class="panel-heading">
-			<h3 class="panel-title">Page Info</h3>
+			<h3 class="panel-title">User Info</h3>
 		</div>
 		<div class="panel-body">
 			<dl class="dl-horizontal">
-				{{-- <dt>Last Name:</dt><dd> {{ $page->name }}</dd>
-				<dt>Page Path:</dt><dd> {{ $page->path }}</dd>
-				<dt>Page Description:</dt><dd> {{ $page->description }}</dd>
-				<dt>Created By:</dt><dd> {{ $page->owner->fullName() }}</dd>
-				<dt>Created On:</dt><dd> {{ $page->created_at->toDayDateTimeString() }}</dd>
+				<dt>Last Name:</dt><dd> {{ $user->last_name }}</dd>
+				<dt>First Name:</dt><dd> {{ $user->first_name }}</dd>
+				<dt>Admin:</dt><dd> {{ $user->isAdmin() }}</dd>
+				<dt>Email:</dt><dd> <a href="mailto:{{ $user->email }}">{{ $user->email }}</a></dd>
+				<dt>Created On:</dt><dd> {{ $user->created_at->toDayDateTimeString() }}</dd>
 				<dt>Last updated:</dt><dd> 
-					@if( ! is_null($page->updated_by) )
-					on {{ $page->updated_at->format('Y-m-d') }} by {{ $page->updated_by }}
+					@if( ! is_null($user->updated_at) )
+					{{ $user->updated_at->toDayDateTimeString() }}
 					@else
-					no updates yet
+					No updates yet
 					@endif
 				</dd>
-				<dt>Active:</dt><dd>@if( $page->active ) Yes @else No @endif</dd>
-			</dl> --}}
-		</div>
-        {{-- <div class="panel-footer clearfix">
-
-	        @if($page->active)
-				<a href="{{ $page->path }}" target="_blank" class="btn btn-default pull-left">View Page</a>
-			@else
-				<a href="{{ '/preview/' . $page->path }}" target="_blank" class="btn btn-default pull-left">Preview Page</a>
-			@endif
-
-            <div class="form-group">
-                <a href="{{ route('pages.edit', ['id' => $page->id ]) }}" class="btn btn-primary btn-save pull-right">Edit</a>
-                <a href="{{ route('pages.index') }}" class="btn btn-default pull-right">Cancel</a>
-            </div>
-        </div> --}}
-	</div>
-
-	<hr>
-
-	<div class="panel panel-default">
-
-		<div class="panel-heading">
-			<h3 class="panel-title">Page Content</h3>
-		</div>
-		<div class="panel-body">
-
-			{{-- @if( ! is_null( $page->main_content ) )
-				{!! html_entity_decode($page->main_content) !!}
-			@else
-				<p>No content yet.</p>
-			@endif --}}
-
+				{{-- <dt>Active:</dt><dd>@if( $user->active ) Yes @else No @endif</dd> --}}
+			</dl>
 		</div>
         <div class="panel-footer clearfix">
-
-	        {{-- @if($page->active)
-				<a href="{{ $page->path }}" target="_blank" class="btn btn-default pull-left">View Page</a>
-			@else
-				<a href="{{ '/preview/' . $page->path }}" target="_blank" class="btn btn-default pull-left">Preview Page</a>
-			@endif
-
             <div class="form-group">
-                <a href="{{ route('pages.edit', ['id' => $page->id ]) }}" class="btn btn-primary btn-save pull-right">Edit</a>
-                <a href="{{ route('pages.index') }}" class="btn btn-default pull-right">Cancel</a>
-            </div> --}}
+                <a href="{{ route('users.edit', ['id' => $user->id ]) }}" class="btn btn-primary btn-save pull-right">Edit</a>
+                <a href="{{ route('users.index') }}" class="btn btn-default pull-right">Cancel</a>
+            </div>
         </div>
 	</div>
 </div>

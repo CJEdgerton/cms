@@ -84,7 +84,11 @@ class UserCrudTest extends TestCase
     public function an_admin_can_perform_crud_on_users()
     {
 
+        // $this->withExceptionHandling();
+
         $user  = make('App\User');
+        $user->confirm_password = $user->password;
+        $user->makeVisible(['password', 'remember_token']);
         $admin = create('App\User', ['is_admin' => 1]);
         $this->signIn($admin);
 
@@ -102,6 +106,8 @@ class UserCrudTest extends TestCase
 
         // Create User
         $user  = create('App\User');
+        $user->confirm_password = $user->password;
+        $user->makeVisible(['password', 'remember_token']);
 
         // Show
         $this->get(route('users.show', ['id' => $user->id]))

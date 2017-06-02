@@ -23,7 +23,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('content-management.users.index');
+        $users = User::latest()->paginate(10);
+
+        return view('content-management.users.index')->with('users', $users);
     }
 
     /**
@@ -45,7 +47,7 @@ class UserController extends Controller
     public function store(StoresUser $request)
     {
         $user = $request->store();
-        return redirect()->route('users.show', ['id', $user->id]);
+        return redirect()->route('users.show', ['id' => $user->id]);
     }
 
     /**
@@ -80,6 +82,7 @@ class UserController extends Controller
     public function update(UpdatesUser $request, User $user)
     {
         $user = $request->update($user);
+        return redirect()->route('users.show', ['id' => $user->id]);
     }
 
     /**

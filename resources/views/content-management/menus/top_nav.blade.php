@@ -31,7 +31,7 @@
                 @else
 
                     @if( auth()->user()->is_admin )
-                    {{-- <li><a href="{{ route('users') }}">Users</a></li> --}}
+                    <li><a href="{{ route('users.index') }}">Users</a></li>
                     @endif
 
                     <li><a href="{{ route('pages.index') }}">Pages</a></li>

@@ -25,8 +25,11 @@ class StoresUser extends FormRequest
     public function rules()
     {
         return [
-            'last_name'  => 'string',
-            'first_name' => 'string',
+            'is_admin'         => 'required',
+            'last_name'        => 'required|string',
+            'first_name'       => 'required|string',
+            'password'         => 'required|string',
+            'confirm_password' => 'required|string|same:password',
         ];
     }
 
@@ -42,4 +45,11 @@ class StoresUser extends FormRequest
 
         return $user;
     }
-}
+
+    public function messages()
+    {
+        return [
+            'confirm_password.same' => 'Passwords are not the same!',
+        ];
+    }
+} 
