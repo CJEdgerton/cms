@@ -28,7 +28,7 @@
 				<dt>Page Name:</dt><dd> {{ $page->name }}</dd>
 				<dt>Page Path:</dt><dd> {{ $page->path }}</dd>
 				<dt>Page Description:</dt><dd> {{ $page->description }}</dd>
-				<dt>Created By:</dt><dd> {{ $page->owner->full_name() }}</dd>
+				<dt>Created By:</dt><dd> {{ $page->owner->fullName() }}</dd>
 				<dt>Created On:</dt><dd> {{ $page->created_at->toDayDateTimeString() }}</dd>
 				<dt>Last updated:</dt><dd> 
 					@if( ! is_null($page->updated_by) )

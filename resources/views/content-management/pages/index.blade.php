@@ -16,7 +16,6 @@
                 <th>Name</th>
                 <th>Path</th>
                 <th>Description</th>
-
                 @if( auth()->user()->is_admin )
                 <th>Created By</th>
                 @endif
@@ -30,7 +29,7 @@
                 <td>{{ $page->path }}</td>
                 <td>{{ $page->description }}</td>
                 @if( auth()->user()->is_admin )
-                <td>{{ $page->created_by }}</td>
+                <td>{{ $page->owner->fullName() }}</td>
                 @endif
                 <td>{{ $page->created_at->format('Y-m-d') }}</td>
             </tr>
