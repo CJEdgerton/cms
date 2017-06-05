@@ -87,7 +87,6 @@
             </div>
             <div class="panel-body">
                 <div class="form-group">
-                    <label for="main_content">Tiny MCE Here</label>                        
                     <textarea name="main_content" id="main-content" class="form-control" rows="8">{{ old('main_content') }}</textarea>
                 </div>
             </div>
@@ -105,10 +104,4 @@
 
 @endsection
 
-@push('scripts')
-<script type="text/javascript">
-
-   tinymce.init({ selector:'#main-content' });
-    
-</script>
-@endpush
+@include('content-management.includes.tinymce')

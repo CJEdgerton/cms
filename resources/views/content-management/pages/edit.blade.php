@@ -103,8 +103,7 @@
             </div>
             <div class="panel-body">
                 <div class="form-group">
-                    <label for="main_content">Content</label>                        
-                    <textarea name="main_content" class="form-control" rows="8">{{ $page->main_content }}</textarea>
+                    <textarea name="main_content" id="main-content" class="form-control" rows="8">{{ $page->main_content }}</textarea>
                 </div>
             </div>
             <div class="panel-footer clearfix">
@@ -159,3 +158,5 @@
     </div>
 
 @endsection
+
+@include('content-management.includes.tinymce')
