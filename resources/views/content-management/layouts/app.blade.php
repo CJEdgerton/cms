@@ -23,6 +23,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('libs/tinymce/tinymce.min.js') }}"></script>
     @stack('scripts')
 </body>
 </html>
