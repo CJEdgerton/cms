@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Page;
+use Illuminate\Http\File;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoresPage;
 use App\Http\Requests\UpdatesPage;
 use App\Http\Requests\DestroysPage;
+use Illuminate\Support\Facades\Storage;
 
 class PageController extends Controller
 {
@@ -143,5 +145,11 @@ class PageController extends Controller
         $template = 'content' . $template;
 
         return view($template)->with('page', $page);
+    }
+
+    public function uploadImage(Request $request)
+    {
+        $image_path = $request->file('image')->store('avatars', 'public');
+        return asset($image_path);
     }
 }

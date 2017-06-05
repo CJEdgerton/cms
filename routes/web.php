@@ -34,6 +34,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // Pages
 	Route::resource('content-management/pages', 'PageController');
+	Route::post('content-management/pages/upload-image', 'PageController@uploadImage')->name('pages.upload-image');
 
 // Users
 	Route::resource('content-management/users', 'UserController');
