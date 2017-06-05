@@ -9,9 +9,18 @@
             'advlist autolink lists link image charmap print preview hr anchor pagebreak',
             'searchreplace wordcount visualblocks visualchars code fullscreen',
             'insertdatetime media nonbreaking save table contextmenu directionality',
-            'template paste textcolor colorpicker textpattern imagetools toc help'
+            'template paste textcolor colorpicker textpattern imagetools toc help spellchecker'
         ],
-        toolbar1: 'undo redo | insert | styleselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media | print preview fullscreen | help',
+        // menu: {
+        //     file: {title: 'File', items: 'print'},
+        //     edit: {title: 'Edit', items: 'undo redo | cut copy paste pastetext | selectall'},
+        //     insert: {title: 'Insert', items: 'link media | template hr'},
+        //     view: {title: 'View', items: 'visualaid'},
+        //     format: {title: 'Format', items: 'bold italic underline strikethrough superscript subscript | formats | removeformat'},
+        //     table: {title: 'Table', items: 'inserttable tableprops deletetable | cell row column'},
+        //     tools: {title: 'Tools', items: 'spellchecker code'}
+        // },
+        toolbar1: 'undo redo | insert | styleselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media | print preview fullscreen | spellchecker help',
         image_advtab: true,
         templates: [
             { title: 'Test template 1', content: 'Test 1' },
@@ -66,7 +75,7 @@
             formData.append('image', blobInfo.blob(), blobInfo.filename());
             formData.append('_token', '{{ csrf_token() }}');
 
-            axios.post('{{ route('pages.upload-image') }}', formData)
+            axios.post('{{ route('pages.upload_image') }}', formData)
             .then(function (response) {
                 console.log(response.data);
                 success(response.data);
@@ -74,7 +83,52 @@
             .catch(function (error) {
                 console.log(error);
             });
+        },
+
+        // Spellchecker
+        // spellchecker_callback: function(method, text, success, failure) {
+        //     tinymce.util.JSONRequest.sendRPC({
+        //         url: "{{route('pages.spell_check')}}",
+        //         method: "spellcheck",
+        //         params: {
+        //             _token: '{{ csrf_token() }}',
+        //             lang: this.getLanguage(),
+        //             words: text.match(this.getWordCharPattern())
+        //         },
+        //         success: function(result) {
+        //             success(result);
+        //         },
+        //         error: function(error, xhr) {
+        //             failure("Spellcheck error:" + xhr.status);
+        //         }
+        //     });
+        // },
+
+        spellchecker_callback: function(method, text, success, failure) {
+            formData = new FormData();
+            formData.append( 'words', text.match(this.getWordCharPattern()) );
+            formData.append( '_token', '{{ csrf_token() }}' );
+
+            axios.post('{{ route('pages.spell_check') }}', formData)
+            .then(function (response) {
+                console.log(response.data);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+            // if (method == "spellcheck") {
+            //     var suggestions = {};
+            //     for (var i = 0; i < words.length; i++) {
+            //         suggestions[words[i]] = ["First", "Second"];
+            //     }
+            //     success(suggestions);
+            // }
         }
+
+
+
+
     });
 
 </script>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Page;
 use Illuminate\Http\File;
 use Illuminate\Http\Request;
+use App\Utilities\SpellChecker;
 use App\Http\Requests\StoresPage;
 use App\Http\Requests\UpdatesPage;
 use App\Http\Requests\DestroysPage;
@@ -152,4 +153,16 @@ class PageController extends Controller
         $image_path = $request->file('image')->store('avatars', 'public');
         return asset($image_path);
     }
+
+    public function spellCheck(Request $request)
+    {
+        $sp = new SpellChecker;
+
+        $words = explode(",", $request->words);
+
+        $response = $sp->spellCheck($words);
+
+        return $response;
+    }
 }
+
