@@ -107,11 +107,6 @@
                 success(suggestions);
             }
         }
-
-
-
-
-
     });
 
 </script>

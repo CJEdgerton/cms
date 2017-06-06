@@ -14,7 +14,7 @@ class SpellChecker
 		}
 	';
 
-	public function spellCheck(Array $words)
+	public function spellCheck(Array $words, String $return_format = "json")
 	{
 		$allSuggestions = array();
 
@@ -24,11 +24,15 @@ class SpellChecker
 				$allSuggestions[$word] = $wordSuggestions;
 		}
 
-		$return_format = [
+		$return_array = [
 			"words" => $allSuggestions
 		];
 
-		return json_encode($return_format);	
+		if ($return_format === "array")
+			return $return_array;	
+
+
+		return json_encode($return_array);	
 	}
 
 	public function returnSuggestions(String $word)
