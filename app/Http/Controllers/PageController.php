@@ -114,13 +114,6 @@ class PageController extends Controller
         return redirect()->route('pages.index');
     }
 
-    public function uploadImage(Request $request)
-    {
-        return asset(
-            $request->file('image')->store('avatars', 'public')
-        );
-    }
-
     /* Methods for grabbing public page */
     // Can use this if we want each page to use the same template.
     public function showPage($url_path = null)

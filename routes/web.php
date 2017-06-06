@@ -34,13 +34,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // Pages
 	Route::resource('content-management/pages', 'PageController');
-	Route::post('content-management/pages/upload-image', 'PageController@uploadImage')->name('pages.upload_image');
 
 // Users
 	Route::resource('content-management/users', 'UserController');
 
 // Utilities
-	// Route::post('content-management/upload-image', 'PageController@uploadImage')->name('pages.upload_image');
+	Route::post('content-management/upload-image', 'UtilityController@uploadImage')->name('utilities.upload_image');
 	Route::post('content-management/spell-check', 'UtilityController@spellCheck')->name('utilities.spell_check');
 
 // Content

@@ -75,7 +75,7 @@
             formData.append('image', blobInfo.blob(), blobInfo.filename());
             formData.append('_token', '{{ csrf_token() }}');
 
-            axios.post('{{ route('pages.upload_image') }}', formData)
+            axios.post('{{ route('utilities.upload_image') }}', formData)
             .then(function (response) {
                 console.log(response.data);
                 success(response.data);
