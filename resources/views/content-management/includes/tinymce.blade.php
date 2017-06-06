@@ -85,25 +85,6 @@
             });
         },
 
-        // Spellchecker
-        // spellchecker_callback: function(method, text, success, failure) {
-        //     tinymce.util.JSONRequest.sendRPC({
-        //         url: "{{route('pages.spell_check')}}",
-        //         method: "spellcheck",
-        //         params: {
-        //             _token: '{{ csrf_token() }}',
-        //             lang: this.getLanguage(),
-        //             words: text.match(this.getWordCharPattern())
-        //         },
-        //         success: function(result) {
-        //             success(result);
-        //         },
-        //         error: function(error, xhr) {
-        //             failure("Spellcheck error:" + xhr.status);
-        //         }
-        //     });
-        // },
-
         spellchecker_callback: function(method, text, success, failure) {
             formData = new FormData();
             formData.append( 'words', text.match(this.getWordCharPattern()) );
@@ -112,19 +93,21 @@
             axios.post('{{ route('pages.spell_check') }}', formData)
             .then(function (response) {
                 console.log(response.data);
+                success(response.data);
             })
             .catch(function (error) {
                 console.log(error);
             });
 
-            // if (method == "spellcheck") {
-            //     var suggestions = {};
-            //     for (var i = 0; i < words.length; i++) {
-            //         suggestions[words[i]] = ["First", "Second"];
-            //     }
-            //     success(suggestions);
-            // }
+            if (method == "spellcheck") {
+                var suggestions = {};
+                for (var i = 0; i < words.length; i++) {
+                    suggestions[words[i]] = ["First", "Second"];
+                }
+                success(suggestions);
+            }
         }
+
 
 
 

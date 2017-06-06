@@ -16,17 +16,22 @@ class SpellChecker
 
 	public function spellCheck(Array $words)
 	{
-		$suggestions = array();
+		$allSuggestions = array();
 
 		foreach($words as $word)
 		{
-			array_push($suggestions, $this->returnSuggestions($word));
+			if( count( $wordSuggestions = $this->returnSuggestions($word) ) )
+				$allSuggestions[$word] = $wordSuggestions;
 		}
 
-		dd($suggestions);
+		$return_format = [
+			"words" => $allSuggestions
+		];
+
+		return json_encode($return_format);	
 	}
 
-	public function returnSuggestions($string)
+	public function returnSuggestions(String $word)
 	{
 		$suggestions = array();
 
@@ -40,8 +45,8 @@ class SpellChecker
         pspell_config_mode($config_dic, PSPELL_FAST);
         $dictionary = pspell_new_config($config_dic);
 
-        if (!pspell_check($dictionary, $string)) {
-            $suggestions = pspell_suggest($dictionary, $string);
+        if (!pspell_check($dictionary, $word)) {
+            $suggestions = pspell_suggest($dictionary, $word);
         }
 
         return $suggestions;	
