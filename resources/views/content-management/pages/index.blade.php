@@ -14,24 +14,30 @@
         <thead>
             <tr>
                 <th>Name</th>
-                <th>Path</th>
+                {{-- <th>Path</th> --}}
                 <th>Description</th>
                 @if( auth()->user()->is_admin )
                 <th>Created By</th>
                 @endif
                 <th>Created At</th>
+                <th>Updated By</th>
+                <th>Last Updated</th>
+                <th>Active</th>
             </tr>
         </thead>
         <tbody>
             @foreach($pages as $page)
             <tr>
                 <td><a href="/content-management/pages/{{ $page->id }}">{{ $page->name }}</a></td>
-                <td>{{ $page->path }}</td>
+                {{-- <td>{{ $page->path }}</td> --}}
                 <td>{{ $page->description }}</td>
                 @if( auth()->user()->is_admin )
                 <td>{{ $page->owner->fullName() }}</td>
                 @endif
-                <td>{{ $page->created_at->format('Y-m-d') }}</td>
+                <td>{{ $page->created_at }}</td>
+                <td>{{ ! is_null( $user = $page->updater ) ? $user->fullName() : "" }}</td>
+                <td>{{ $page->updated_at }}</td>
+                <td>{{ $page->isActive() }}</td>
             </tr>
             @endforeach
         </tbody>

@@ -11,7 +11,7 @@
 			<a href="#">Home</a>
 		</li>
 		<li>
-			<a href="{{ route('pages.index') }}">Manage Pages</a>
+			<a href="{{ route('pages.index') }}">Manage Users</a>
 		</li>
 		<li class="active">
 			{{ $user->fullName() }}

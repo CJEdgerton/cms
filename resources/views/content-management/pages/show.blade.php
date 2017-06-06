@@ -30,6 +30,7 @@
 				<dt>Page Description:</dt><dd> {{ $page->description }}</dd>
 				<dt>Created By:</dt><dd> {{ $page->owner->fullName() }}</dd>
 				<dt>Created On:</dt><dd> {{ $page->created_at->toDayDateTimeString() }}</dd>
+				<dt>Updated By:</dt><dd> {{ ! is_null( $user = $page->updater ) ? $user->fullName() : "" }}</dd>
 				<dt>Last updated:</dt><dd> 
 					@if( ! is_null($page->updated_by) )
 					on {{ $page->updated_at->format('Y-m-d') }} by {{ $page->updated_by }}

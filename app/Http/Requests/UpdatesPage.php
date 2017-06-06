@@ -30,6 +30,7 @@ class UpdatesPage extends FormRequest
             'path'         => 'string|max:500|nullable',
             'description'  => 'string|max:500',
             'main_content' => 'string',
+            'active'       => 'boolean',
         ];
     }
 
@@ -43,6 +44,7 @@ class UpdatesPage extends FormRequest
             'description'  => $this->description, 
             'main_content' => $this->main_content,
             'updated_by'   => auth()->id(),
+            'active'       => $this->active,
         ]);
     }
 }

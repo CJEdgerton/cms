@@ -66,6 +66,23 @@
                     <p class="help-text text-center">Leave blank if unknown</p>
                 </div>
 
+                <div class="form-group">
+                    <label for="active">Active?</label>    
+
+                    <select name="active" class="form-control">
+                        <option 
+                            {{ $page->active === 0 ? 'selected' : '' }} 
+                            value="0">
+                            No
+                        </option>
+                        <option 
+                            {{ $page->active === 1 ? 'selected' : '' }} 
+                            value="1">
+                            Yes
+                        </option>
+                    </select>
+                </div>
+
                 @if(count($errors))
                     <ul class="alert alert-danger">
                         @foreach($errors->all() as $error)

@@ -28,7 +28,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 $factory->define(App\Page::class, function (Faker\Generator $faker) {
 	$name   = $faker->sentence;
 	$path   = (new App\Utilities\PageHelpers)->preparePath($name);
-	$active = $faker->boolean();
+	$active = rand(0,1);
 
     return [
 		'name'         => $name,

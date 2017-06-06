@@ -30,6 +30,7 @@ class StoresPage extends FormRequest
             'path'         => 'string|max:500|nullable',
             'description'  => 'string|max:500',
             'main_content' => 'string',
+            'active'       => 'boolean',
         ];
     }
 
@@ -44,6 +45,7 @@ class StoresPage extends FormRequest
             'description'  => $this->description, 
             'main_content' => $this->main_content, 
             'created_by'   => auth()->id(),
+            'active'       => $this->active,
         ]);
 
         return $page;
