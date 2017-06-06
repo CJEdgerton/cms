@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Page;
 use Illuminate\Http\File;
 use Illuminate\Http\Request;
-use App\Utilities\SpellChecker;
 use App\Http\Requests\StoresPage;
 use App\Http\Requests\UpdatesPage;
 use App\Http\Requests\DestroysPage;
@@ -115,6 +114,13 @@ class PageController extends Controller
         return redirect()->route('pages.index');
     }
 
+    public function uploadImage(Request $request)
+    {
+        return asset(
+            $request->file('image')->store('avatars', 'public')
+        );
+    }
+
     /* Methods for grabbing public page */
     // Can use this if we want each page to use the same template.
     public function showPage($url_path = null)
@@ -132,37 +138,6 @@ class PageController extends Controller
         $page = Page::where('path', '/' . $url_path)->firstOrFail();
 
         return view('content.regular_page')->with('page', $page);
-    }
-
-
-    // Can use this is we want each page to have it's own file.
-    public function getPage($url_path = null)
-    {
-        $page = Page::where('path', '/' . $url_path)->where('active', 1);
-
-        $page = $page->firstOrFail();
-
-        $template = str_replace('/', '.', $page->path);
-        $template = 'content' . $template;
-
-        return view($template)->with('page', $page);
-    }
-
-    public function uploadImage(Request $request)
-    {
-        $image_path = $request->file('image')->store('avatars', 'public');
-        return asset($image_path);
-    }
-
-    public function spellCheck(Request $request)
-    {
-        $checker = new SpellChecker;
-
-        $words = explode(",", $request->words);
-
-        $response = $checker->spellCheck($words);
-
-        return $response;
     }
 }
 

@@ -90,7 +90,7 @@
             formData.append( 'words', text.match(this.getWordCharPattern()) );
             formData.append( '_token', '{{ csrf_token() }}' );
 
-            axios.post('{{ route('pages.spell_check') }}', formData)
+            axios.post('{{ route('utilities.spell_check') }}', formData)
             .then(function (response) {
                 console.log(response.data);
                 success(response.data);
