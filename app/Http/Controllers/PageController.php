@@ -156,11 +156,11 @@ class PageController extends Controller
 
     public function spellCheck(Request $request)
     {
-        $sp = new SpellChecker;
+        $checker = new SpellChecker;
 
         $words = explode(",", $request->words);
 
-        $response = $sp->spellCheck($words);
+        $response = $checker->spellCheck($words);
 
         return $response;
     }
