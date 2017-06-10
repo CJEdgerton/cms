@@ -19,10 +19,6 @@
 	</ol>
 
 	<div class="panel panel-default">
-
-		<div class="panel-heading">
-			<h3 class="panel-title">Page Info</h3>
-		</div>
 		<div class="panel-body">
 			<dl class="dl-horizontal">
 				<dt>Page Name:</dt><dd> {{ $page->name }}</dd>
@@ -40,30 +36,10 @@
 				</dd>
 				<dt>Active:</dt><dd>@if( $page->active ) Yes @else No @endif</dd>
 			</dl>
-		</div>
-        <div class="panel-footer clearfix">
 
-	        @if($page->active)
-				<a href="{{ $page->path }}" target="_blank" class="btn btn-default pull-left">View Page</a>
-			@else
-				<a href="{{ '/preview/' . $page->path }}" target="_blank" class="btn btn-default pull-left">Preview Page</a>
-			@endif
-
-            <div class="form-group">
-                <a href="{{ route('pages.edit', ['id' => $page->id ]) }}" class="btn btn-primary btn-save pull-right">Edit</a>
-                <a href="{{ route('pages.index') }}" class="btn btn-default pull-right">Cancel</a>
-            </div>
-        </div>
-	</div>
-
-	<hr>
-
-	<div class="panel panel-default">
-
-		<div class="panel-heading">
-			<h3 class="panel-title">Page Content</h3>
-		</div>
-		<div class="panel-body">
+			<hr>
+			<h4>Content</h4>
+			<hr>
 
 			@if( ! is_null( $page->main_content ) )
 				{!! html_entity_decode($page->main_content) !!}
@@ -77,7 +53,7 @@
 	        @if($page->active)
 				<a href="{{ $page->path }}" target="_blank" class="btn btn-default pull-left">View Page</a>
 			@else
-				<a href="{{ '/preview/' . $page->path }}" target="_blank" class="btn btn-default pull-left">Preview Page</a>
+				<a href="{{ '/preview' . $page->path }}" target="_blank" class="btn btn-default pull-left">Preview Page</a>
 			@endif
 
             <div class="form-group">

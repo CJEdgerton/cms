@@ -21,9 +21,6 @@
     <form action="{{ route('pages.store') }}" method="POST">
 
         <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Page Info</h3>
-            </div>
             <div class="panel-body">
 
                 {{ csrf_field() }}
@@ -81,6 +78,13 @@
                     </select>
                 </div>
 
+                <hr>
+
+                <div class="form-group">
+                    <label for="main_content">Content</label>         
+                    <textarea name="main_content" id="main-content" class="form-control" rows="8">{{ old('main_content') }}</textarea>
+                </div>
+
                 @if(count($errors))
                     <ul class="alert alert-danger">
                         @foreach($errors->all() as $error)
@@ -89,23 +93,6 @@
                     </ul>
                 @endif
 
-            </div>
-            <div class="panel-footer clearfix">
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-save pull-right">Save</button>
-                    <a href="{{ route('pages.index') }}" class="btn btn-default pull-right">Cancel</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Page Content</h3>
-            </div>
-            <div class="panel-body">
-                <div class="form-group">
-                    <textarea name="main_content" id="main-content" class="form-control" rows="8">{{ old('main_content') }}</textarea>
-                </div>
             </div>
             <div class="panel-footer clearfix">
                 <div class="form-group">

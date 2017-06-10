@@ -58,3 +58,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 	// Route::get('{url_path}', [
 	//     'uses' => 'PageController@getPage' 
 	// ])->where('url_path', '([A-Za-z0-9\-\/]+)');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
