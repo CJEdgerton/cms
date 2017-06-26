@@ -18,7 +18,7 @@
         </li>
     </ol>
 
-    <form action="{{ route('pages.store') }}" method="POST">
+    <form action="{{ route('pages.store') }}" method="POST" class="form-horizontal">
 
         <div class="panel panel-default">
             <div class="panel-body">
@@ -26,63 +26,69 @@
                 {{ csrf_field() }}
 
                 <div class="form-group">
-                    <label for="name">Name</label>                        
-                    <input 
-                        type="text" 
-                        name="name" 
-                        class="form-control" 
-                        value="{{ old('name') }}" 
-                        placeholder="Page Name" 
-                        required>
-                </div>
-
-                <div class="form-group">
-                    <label for="description">Description</label>                        
-                    <textarea 
-                        name="description" 
-                        class="form-control" 
-                        rows="3" 
-                        placeholder="Page Description" 
-                        required>{{ old('description') }}</textarea>
-                </div>
-
-                <div class="form-group">
-                    <label for="path">Path</label>                        
-                    <div class="input-group">
-                        <span class="input-group-addon" id="basic-addon1">hr.fsu.edu/</span>
+                    <label for="name" class="col-md-2 control-label">Name</label>                        
+                    <div class="col-md-8">
                         <input 
                             type="text" 
-                            name="path" 
+                            name="name" 
                             class="form-control" 
-                            placeholder="my/page/here" 
-                            value="{{ old('path') }}">
+                            value="{{ old('name') }}" 
+                            placeholder="Page Name" 
+                            required>
                     </div>
-
-                    <p class="text-center help-text">Leave blank if unknown</p>
                 </div>
 
                 <div class="form-group">
-                    <label for="active">Active?</label>    
+                    <label for="description" class="col-md-2 control-label">Description</label>                        
+                    <div class="col-md-8">
+                        <textarea 
+                            name="description" 
+                            class="form-control" 
+                            rows="1" 
+                            placeholder="Page Description" 
+                            required>{{ old('description') }}</textarea>
+                    </div>
+                </div>
 
-                    <select name="active" class="form-control">
-                        <option 
-                            {{ old('active') === 0 ? 'selected' : '' }} 
-                            value="0">
-                            No
-                        </option>
-                        <option 
-                            {{ old('active') === 1 ? 'selected' : '' }} 
-                            value="1">
-                            Yes
-                        </option>
-                    </select>
+                <div class="form-group">
+                    <label for="path" class="col-md-2 control-label">Path</label>                        
+                    <div class="col-md-8">
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon1">hr.fsu.edu/</span>
+                            <input 
+                                type="text" 
+                                name="path" 
+                                class="form-control" 
+                                placeholder="page-path (Leave blank if unknown)" 
+                                value="{{ old('path') }}">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="active" class="col-md-2 control-label">Active?</label>    
+                    <div class="col-md-8">
+                        <select name="active" class="form-control">
+                            <option 
+                                {{ old('active') === 0 ? 'selected' : '' }} 
+                                value="0">
+                                No
+                            </option>
+                            <option 
+                                {{ old('active') === 1 ? 'selected' : '' }} 
+                                value="1">
+                                Yes
+                            </option>
+                        </select>
+                    </div>
                 </div>
 
                 <hr>
 
                 <div class="form-group">
-                    <label for="main_content">Content</label>         
-                    <textarea name="main_content" id="main-content" class="form-control" rows="8">{{ old('main_content') }}</textarea>
+                    <div class="col-md-12">
+                        <textarea name="main_content" id="main-content" class="form-control" rows="8">{{ old('main_content') }}</textarea>
+                    </div>
                 </div>
 
                 @if(count($errors))
@@ -95,9 +101,11 @@
 
             </div>
             <div class="panel-footer clearfix">
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-save pull-right">Save</button>
-                    <a href="{{ route('pages.index') }}" class="btn btn-default pull-right">Cancel</a>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-save pull-right">Save</button>
+                        <a href="{{ route('pages.index') }}" class="btn btn-default pull-right">Cancel</a>
+                    </div>
                 </div>
             </div>
         </div>

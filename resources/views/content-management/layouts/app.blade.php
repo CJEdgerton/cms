@@ -16,7 +16,7 @@
 <body>
     <div>
         @include('content-management.menus.top_nav')
-        <div class="container">
+        <div class="container-fluid">
             @yield('content')
         </div>
     </div>
