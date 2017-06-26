@@ -117,7 +117,7 @@
                         <a 
                             href="{{ route('pages.show', ['id' => $page->id]) }}" 
                             class="btn btn-default pull-right">
-                            Cancel</a>
+                            Back</a>
                     </div>
                 </div>
             </div>

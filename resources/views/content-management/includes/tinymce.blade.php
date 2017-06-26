@@ -9,7 +9,7 @@
             'advlist autolink lists link image charmap print preview hr anchor pagebreak',
             'searchreplace wordcount visualblocks visualchars code fullscreen',
             'insertdatetime media nonbreaking save table contextmenu directionality',
-            'template paste textcolor colorpicker textpattern imagetools toc help spellchecker'
+            'template paste textcolor colorpicker textpattern imagetools toc help spellchecker save'
         ],
         // menu: {
         //     file: {title: 'File', items: 'print'},
@@ -20,7 +20,7 @@
         //     table: {title: 'Table', items: 'inserttable tableprops deletetable | cell row column'},
         //     tools: {title: 'Tools', items: 'spellchecker code'}
         // },
-        toolbar1: 'undo redo | insert | styleselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media | print preview fullscreen | spellchecker help',
+        toolbar1: 'save | undo redo | insert | styleselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media | print preview fullscreen | spellchecker help',
         image_advtab: true,
         templates: [
             { title: 'Test template 1', content: 'Test 1' },

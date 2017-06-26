@@ -53,7 +53,7 @@ class PageController extends Controller
     {
         $new_page = $request->store();
 
-        return redirect()->route('pages.show', ['id' => $new_page->id]);
+        return redirect()->route('pages.edit', ['id' => $new_page->id]);
     }
 
     /**
@@ -95,7 +95,7 @@ class PageController extends Controller
 
         $request->update($page);
 
-        return redirect()->route('pages.show', ['id' => $page->id]);
+        return redirect()->route('pages.edit', ['id' => $page->id]);
 
     }
 

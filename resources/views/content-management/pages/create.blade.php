@@ -104,7 +104,7 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary btn-save pull-right">Save</button>
-                        <a href="{{ route('pages.index') }}" class="btn btn-default pull-right">Cancel</a>
+                        <a href="{{ route('pages.index') }}" class="btn btn-default pull-right">Back</a>
                     </div>
                 </div>
             </div>
