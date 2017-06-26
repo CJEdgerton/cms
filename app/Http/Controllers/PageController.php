@@ -53,6 +53,8 @@ class PageController extends Controller
     {
         $new_page = $request->store();
 
+        flash('Page saved', 'success');
+
         return redirect()->route('pages.edit', ['id' => $new_page->id]);
     }
 
@@ -93,6 +95,8 @@ class PageController extends Controller
     {
         $this->authorize('update', $page);
 
+        flash('Page saved', 'success');
+        
         $request->update($page);
 
         return redirect()->route('pages.edit', ['id' => $page->id]);

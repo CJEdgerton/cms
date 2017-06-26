@@ -47,6 +47,7 @@ class UserController extends Controller
     public function store(StoresUser $request)
     {
         $user = $request->store();
+        flash('User created', 'success');
         return redirect()->route('users.show', ['id' => $user->id]);
     }
 
@@ -82,6 +83,7 @@ class UserController extends Controller
     public function update(UpdatesUser $request, User $user)
     {
         $user = $request->update($user);
+        flash('User updated', 'success');
         return redirect()->route('users.show', ['id' => $user->id]);
     }
 

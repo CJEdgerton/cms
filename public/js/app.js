@@ -752,6 +752,8 @@ __webpack_require__(27);
 
 // window.Vue = require('vue');
 
+__webpack_require__(43);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -31657,6 +31659,20 @@ module.exports = function(module) {
 __webpack_require__(7);
 module.exports = __webpack_require__(8);
 
+
+/***/ }),
+/* 35 */,
+/* 36 */,
+/* 37 */,
+/* 38 */,
+/* 39 */,
+/* 40 */,
+/* 41 */,
+/* 42 */,
+/* 43 */
+/***/ (function(module, exports) {
+
+$('div.alert').not('.alert-important').delay(3000).fadeOut(350);
 
 /***/ })
 /******/ ]);

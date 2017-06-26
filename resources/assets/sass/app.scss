@@ -14,6 +14,9 @@
 @import "helpers/spacing/margin";
 @import "helpers/spacing/padding";
 
+// Custom Components
+@import "components/lc-flash-alert";
+
 body {
 	/* For fixed navbar */
 	padding-top: 80px;

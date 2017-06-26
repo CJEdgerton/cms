@@ -14,6 +14,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
+    @include('flash::message')
     <div>
         @include('content-management.menus.top_nav')
         <div class="container-fluid">
