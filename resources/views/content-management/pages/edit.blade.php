@@ -12,10 +12,9 @@
         <li>
             <a href="{{ route('pages.index') }}">Manage Pages</a>
         </li>
-        <li>
-            <a href="{{ route('pages.show', ['id' => $page->id]) }}">{{ $page->name }}</a>
+         <li class="active">
+            {{ $page->name }}
         </li>
-        <li class="active">Edit</li>
     </ol>
 
     <form action="{{ route('pages.update', ['id' => $page->id]) }}" class="form-horizontal" method="POST">
@@ -36,6 +35,13 @@
                             value="{{ $page->name }}" 
                             placeholder="Page Name" 
                             required>
+                    </div>
+                    <div class="col-md-2">
+                        <a 
+                            data-toggle="modal" 
+                            href="#page-info-modal">
+                            <span class="glyphicon glyphicon-info-sign pull-right"></span>
+                        </a>
                     </div>
                 </div>
 
@@ -115,7 +121,7 @@
                             class="btn btn-primary btn-save pull-right">
                             Save</button>
                         <a 
-                            href="{{ route('pages.show', ['id' => $page->id]) }}" 
+                            href="{{ route('pages.index') }}" 
                             class="btn btn-default pull-right">
                             Back</a>
                     </div>
@@ -153,6 +159,36 @@
         </div>
     </div>
 
+    <div class="modal fade" id="page-info-modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <dl class="dl-horizontal">
+                        <dt>Created By:</dt><dd> {{ $page->owner->fullName() }}</dd>
+                        <dt>Created On:</dt><dd> {{ $page->created_at->toDayDateTimeString() }}</dd>
+                        <dt>Updated By:</dt><dd> {{ ! is_null( $user = $page->updater ) ? $user->fullName() : "" }}</dd>
+                        <dt>Last updated:</dt><dd> 
+                            @if( ! is_null($page->updated_by) )
+                            {{ $page->updated_at->toDayDateTimeString() }}
+                            @else
+                            no updates yet
+                            @endif
+                        </dd>
+                        <dt>Active:</dt><dd>@if( $page->active ) Yes @else No @endif</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+
 @endsection
 
 @include('content-management.includes.tinymce')
+
+@push('scripts')
+<script>
+$(function () {
+  $('[data-toggle="popover"]').popover()
+});
+</script>
+@endpush

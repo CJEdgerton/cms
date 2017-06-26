@@ -14,7 +14,7 @@
         <thead>
             <tr>
                 <th>Name</th>
-                {{-- <th>Path</th> --}}
+                <th>Path</th>
                 <th>Description</th>
                 @if( auth()->user()->is_admin )
                 <th>Created By</th>
@@ -28,8 +28,8 @@
         <tbody>
             @foreach($pages as $page)
             <tr>
-                <td><a href="/content-management/pages/{{ $page->id }}">{{ $page->name }}</a></td>
-                {{-- <td>{{ $page->path }}</td> --}}
+                <td><a href="/content-management/pages/{{ $page->id }}/edit">{{ $page->name }}</a></td>
+                <td>{{ $page->path }}</td>
                 <td>{{ $page->description }}</td>
                 @if( auth()->user()->is_admin )
                 <td>{{ $page->owner->fullName() }}</td>
