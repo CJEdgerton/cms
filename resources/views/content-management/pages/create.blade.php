@@ -54,7 +54,7 @@
                     <label for="path" class="col-md-2 control-label">Path</label>                        
                     <div class="col-md-8">
                         <div class="input-group">
-                            <span class="input-group-addon" id="basic-addon1">hr.fsu.edu/</span>
+                            <span class="input-group-addon" id="basic-addon1">my-site.dev/</span>
                             <input 
                                 type="text" 
                                 name="path" 
