@@ -83,22 +83,19 @@
         </div>
         <div class="panel-footer clearfix">
             <div class="col-md-12">
-                <div class="form-group">
+                <a class="btn btn-default pull-left" data-toggle="modal" href='#modal-id'>
+                    <span class="glyphicon glyphicon-trash text-danger"></span>
+                    Delete
+                </a>
 
-                    <a class="btn btn-default pull-left" data-toggle="modal" href='#modal-id'>
-                        <span class="glyphicon glyphicon-trash text-danger"></span>
-                        Delete
-                    </a>
-
-                    <button 
-                        type="submit" 
-                        class="btn btn-primary btn-save pull-right">
-                        Save</button>
-                    <a 
-                        href="{{ route('pages.index') }}" 
-                        class="btn btn-default pull-right">
-                        Back</a>
-                </div>
+                <button 
+                    type="submit" 
+                    class="btn btn-primary btn-save pull-right">
+                    Save</button>
+                <a 
+                    href="{{ route('pages.index') }}" 
+                    class="btn btn-default pull-right">
+                    Back</a>
             </div>
         </div>
 

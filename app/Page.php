@@ -50,4 +50,14 @@ class Page extends Model
 				'user_id' => $user->id
 			]);
 		}
+
+		public function potentialCollaborators()
+		{
+			$owner_id         = $this->owner->id;
+			$collaborator_ids = $this->collaborators->pluck('id')->toArray();
+			$ids              =  array_unique( array_merge($collaborator_ids, [$owner_id]) );
+
+			// Get users
+			return User::whereNotIn('id', $ids)->get();
+		}
 }
