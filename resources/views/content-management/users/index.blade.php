@@ -28,7 +28,7 @@
                 <td>{{ $user->created_at->format('Y-m-d') }}</td>
                 <td>{{ $user->updated_at->format('Y-m-d') }}</td>
                 <td>
-                    <a href="{{ route('users.show', ['id' => $user->id]) }}">
+                    <a href="{{ route('users.edit', ['id' => $user->id]) }}">
                         <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
                     </a>
                 </td>

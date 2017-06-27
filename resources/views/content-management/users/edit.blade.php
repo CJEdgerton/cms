@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="col-md-8 col-md-offset-2">
+<div class="col-md-4 col-md-offset-4">
 
     <h1 class="text-center">Edit User</h1>
 
@@ -13,11 +13,8 @@
         <li>
             <a href="{{ route('users.index') }}">Manage Users</a>
         </li>
-        <li>
-            <a href="{{ route('users.show', ['id' => $user->id]) }}">{{ $user->fullName() }}</a>
-        </li>
         <li class="active">
-            Edit 
+            {{ $user->fullName() }}
         </li>
     </ol>
 
@@ -27,8 +24,14 @@
         {{ method_field('PUT') }}
 
         <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">User Info</h3>
+            <div class="panel-heading clearfix">
+                <h3 class="panel-title pull-left">User Info</h3>
+                <a 
+                    data-toggle="modal"
+                    class="pull-right" 
+                    href="#user-info-modal">
+                    <span class="glyphicon glyphicon-info-sign"></span>
+                </a>
             </div>
             <div class="panel-body">
 
@@ -122,7 +125,7 @@
                     </a>
 
                     <button type="submit" class="btn btn-primary btn-save pull-right">Save</button>
-                    <a href="{{ route('users.show', ['id' => $user->id]) }}" class="btn btn-default pull-right">Cancel</a>
+                    <a href="{{ route('users.index') }}" class="btn btn-default pull-right">Cancel</a>
 
                 </div>
             </div>
@@ -154,6 +157,31 @@
                     <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Cancel</button>
                 </form>
 
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="user-info-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <dl class="dl-horizontal">
+                    <dl class="dl-horizontal">
+                        <dt>Last Name:</dt><dd> {{ $user->last_name }}</dd>
+                        <dt>First Name:</dt><dd> {{ $user->first_name }}</dd>
+                        <dt>Admin:</dt><dd> {{ $user->isAdmin() }}</dd>
+                        <dt>Email:</dt><dd> <a href="mailto:{{ $user->email }}">{{ $user->email }}</a></dd>
+                        <dt>Created On:</dt><dd> {{ $user->created_at->toDayDateTimeString() }}</dd>
+                        <dt>Last updated:</dt><dd> 
+                        @if( ! is_null($user->updated_at) )
+                        {{ $user->updated_at->toDayDateTimeString() }}
+                        @else
+                        No updates yet
+                        @endif
+                    </dd>
+                    {{-- <dt>Active:</dt><dd>@if( $user->active ) Yes @else No @endif</dd> --}}
+                </dl>
             </div>
         </div>
     </div>

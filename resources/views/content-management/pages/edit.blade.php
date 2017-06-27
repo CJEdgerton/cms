@@ -39,6 +39,7 @@
                     <div class="col-md-2">
                         <a 
                             data-toggle="modal" 
+                            style="font-size: 1.3em;" 
                             href="#page-info-modal">
                             <span class="glyphicon glyphicon-info-sign pull-right"></span>
                         </a>
