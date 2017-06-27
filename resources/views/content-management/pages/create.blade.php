@@ -116,4 +116,4 @@
 
 @endsection
 
-@include('content-management.includes.tinymce')
+@include('content-management.includes.pages.tinymce')

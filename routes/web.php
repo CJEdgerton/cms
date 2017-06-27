@@ -34,6 +34,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // Pages
 	Route::resource('content-management/pages', 'PageController');
+	Route::post('content-management/pages/add-collaborators', 'PageController@addCollaborators');
 
 // Users
 	Route::resource('content-management/users', 'UserController');
