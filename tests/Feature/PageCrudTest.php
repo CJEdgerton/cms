@@ -173,4 +173,19 @@ class PageCrudTest extends TestCase
 			->assertRedirect(route('pages.index'));
 		$this->assertDatabaseMissing('pages', ['id' => $another_users_page->id]);
 	}
+
+    /** @test */
+    public function a_page_owner_can_add_collaborators()
+    {
+		$user         = create('App\User', ['is_admin' => 0]);
+		$collaborator = create('App\User', ['is_admin' => 0]);
+		$users_page   = $this->createPage($user);
+
+		$users_page->addCollaborator($collaborator);
+
+		$this->assertDatabaseHas('page_collaborators', [
+			'user_id' => $collaborator->id,
+			'page_id' => $users_page->id,
+		]);
+    }
 }
