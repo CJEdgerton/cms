@@ -51,9 +51,6 @@ class PageCrudTest extends TestCase
     	$this->post(route('pages.store'))
     		->assertRedirect('login');
         
-    	$this->get(route('pages.show', ['id' => $page->id]))
-    		->assertRedirect('login');
-        
     	$this->get(route('pages.edit', ['id' => $page->id]))
     		->assertRedirect('login');
         
@@ -83,54 +80,6 @@ class PageCrudTest extends TestCase
     }
 
     /** @test */
-    public function non_admin_users_can_only_see_their_own_pages()
-    {
-        $this->withExceptionHandling();
-
-		$user       = create('App\User', ['is_admin' => 0]);
-		$users_page = $this->createPage($user);
-
-		$another_user       = create('App\User');
-		$another_users_page = $this->createPage($another_user);
-
-		$this->signIn($user);
-		$this->get( route('pages.index') )
-			->assertSee($users_page->name)
-			->assertDontSee($another_users_page->name);
-
-		$this->get( route('pages.show', ['id' => $users_page->id]) )
-			->assertStatus(200);
-
-		$this->get( route('pages.show', ['id' => $another_users_page->id]) )
-			->assertStatus(403);
-
-    }
-
-    /** @test */
-    public function admin_users_can_see_all_pages()
-    {
-        $this->withExceptionHandling();
-
-		$admin_user       = create('App\User', ['is_admin' => 1]);
-		$admin_users_page = $this->createPage($admin_user);
-
-		$another_user       = create('App\User');
-		$another_users_page = $this->createPage($another_user);
-
-		$this->signIn($admin_user);
-		$this->get( route('pages.index') )
-			->assertSee($another_users_page->name)
-			->assertSee($admin_users_page->name);
-
-		$this->get( route('pages.show', ['id' => $admin_users_page->id]) )
-			->assertStatus(200);
-
-		$this->get( route('pages.show', ['id' => $another_users_page->id]) )
-			->assertStatus(200);
-
-    }
-
-    /** @test */
 	public function non_admin_users_can_only_edit_their_own_pages()
 	{
         $this->withExceptionHandling();
@@ -147,7 +96,7 @@ class PageCrudTest extends TestCase
 			->assertStatus(200);
 
 		$this->patch( route('pages.update', ['id' => $users_page->id]), $users_page->toArray() )
-			->assertRedirect(route('pages.show', ['id' => $users_page->id]));
+			->assertRedirect(route('pages.edit', ['id' => $users_page->id]));
 
 		$this->get( route('pages.edit', ['id' => $another_users_page->id]) )
 			->assertStatus(403);
@@ -173,13 +122,13 @@ class PageCrudTest extends TestCase
 			->assertStatus(200);
 
 		$this->patch( route('pages.update', ['id' => $admin_users_page->id]), $admin_users_page->toArray() )
-			->assertRedirect(route('pages.show', ['id' => $admin_users_page->id]));
+			->assertRedirect(route('pages.edit', ['id' => $admin_users_page->id]));
 
 		$this->get( route('pages.edit', ['id' => $another_users_page->id]) )
 			->assertStatus(200);
 
 		$this->patch( route('pages.update', ['id' => $another_users_page->id]), $another_users_page->toArray()  )
-			->assertRedirect(route('pages.show', ['id' => $another_users_page->id]));
+			->assertRedirect(route('pages.edit', ['id' => $another_users_page->id]));
 	}
 
     /** @test */

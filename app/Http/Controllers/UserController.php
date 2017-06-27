@@ -48,18 +48,7 @@ class UserController extends Controller
     {
         $user = $request->store();
         flash('User created', 'success');
-        return redirect()->route('users.show', ['id' => $user->id]);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show(User $user)
-    {
-        return view('content-management.users.show')->with('user', $user);
+        return redirect()->route('users.index');
     }
 
     /**
@@ -84,7 +73,7 @@ class UserController extends Controller
     {
         $user = $request->update($user);
         flash('User updated', 'success');
-        return redirect()->route('users.show', ['id' => $user->id]);
+        return redirect()->route('users.index');
     }
 
     /**

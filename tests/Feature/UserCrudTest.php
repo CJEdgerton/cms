@@ -36,9 +36,6 @@ class UserCrudTest extends TestCase
     	$this->post(route('users.store'))
     		->assertRedirect('login');
         
-    	$this->get(route('users.show', ['id', $user->id]))
-    		->assertRedirect('login');
-        
     	$this->get(route('users.edit', ['id', $user->id]))
     		->assertRedirect('login');
         
@@ -65,9 +62,6 @@ class UserCrudTest extends TestCase
     		->assertRedirect('home');
         
     	$this->post(route('users.store'))
-    		->assertRedirect('home');
-        
-    	$this->get(route('users.show', ['id' => $user->id]))
     		->assertRedirect('home');
         
     	$this->get(route('users.edit', ['id' => $user->id]))
@@ -108,10 +102,6 @@ class UserCrudTest extends TestCase
         $user  = create('App\User');
         $user->confirm_password = $user->password;
         $user->makeVisible(['password', 'remember_token']);
-
-        // Show
-        $this->get(route('users.show', ['id' => $user->id]))
-            ->assertSee($user->fullName());
 
         // Edit
         $this->get( route('users.edit', ['id' => $user->id]) )

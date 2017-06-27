@@ -59,19 +59,6 @@ class PageController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Page $page)
-    {
-        $this->authorize('view', $page);
-
-        return view('content-management.pages.show')->with('page', $page);
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
