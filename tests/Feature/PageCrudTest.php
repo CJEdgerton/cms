@@ -178,8 +178,8 @@ class PageCrudTest extends TestCase
     public function a_page_owner_can_add_collaborators()
     {
 		$user         = create('App\User', ['is_admin' => 0]);
-		$collaborator = create('App\User', ['is_admin' => 0]);
 		$users_page   = $this->createPage($user);
+		$collaborator = create('App\User', ['is_admin' => 0]);
 
 		$users_page->addCollaborator($collaborator);
 
@@ -187,5 +187,36 @@ class PageCrudTest extends TestCase
 			'user_id' => $collaborator->id,
 			'page_id' => $users_page->id,
 		]);
+    }
+
+    /** @test */
+    public function a_collaborator_can_edit_and_update_a_page_that_they_dont_own()
+    {
+        // $this->withExceptionHandling();
+
+		$user         = create('App\User', ['is_admin' => 0]);
+		$users_page   = $this->createPage($user);
+		$collaborator = create('App\User', ['is_admin' => 0]);
+
+		$users_page->addCollaborator($collaborator);
+
+		$this->signIn($collaborator);
+
+		// Get
+			$this->get(route('pages.edit', ['id' => $users_page->id]))
+				->assertStatus(200);
+
+		// Post
+			$my_string = str_random();
+			$users_page->name = $my_string;
+
+			$this->patch( route('pages.update', ['id' => $users_page->id]), $users_page->toArray() )
+						->assertRedirect(route('pages.edit', ['id' => $users_page->id]));
+
+			$this->assertDatabaseHas('pages', [
+				'id'   => $users_page->id,
+				'name' => $my_string, 
+			]);
+
     }
 }

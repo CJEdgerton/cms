@@ -27,13 +27,30 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function fullName()
-    {
-        return $this->first_name . ' ' . $this->last_name;
-    }
+    /*
+        Relationships
+     */
+        public function pages()
+        {
+            return $this->hasMany('App\Page', 'created_by');
+        }
 
-    public function isAdmin()
-    {
-        return $this->is_admin ? 'Yes' : 'No';
-    }
+        public function collaborations()
+        {
+            return $this->belongsToMany('App\Page', 'page_collaborators');
+        }
+
+
+    /*
+        Helpers
+     */
+        public function fullName()
+        {
+            return $this->first_name . ' ' . $this->last_name;
+        }
+
+        public function isAdmin()
+        {
+            return $this->is_admin ? 'Yes' : 'No';
+        }
 }

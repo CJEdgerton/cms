@@ -23,6 +23,11 @@ class PagePolicy
         return $user->is_admin || $page->created_by === $user->id;
     }
 
+    private function isCollaborator(User $user, Page $page)
+    {
+        return in_array( $user->id, $page->collaborators->pluck('id')->toArray() );
+    }
+
     /**
      * Determine whether the user can view the page.
      *
@@ -55,7 +60,7 @@ class PagePolicy
      */
     public function update(User $user, Page $page)
     {
-        return $this->isOwnerOrAdmin($user, $page);
+        return $this->isOwnerOrAdmin($user, $page) || $this->isCollaborator($user, $page);
     }
 
     /**
