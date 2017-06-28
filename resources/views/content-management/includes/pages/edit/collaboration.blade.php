@@ -8,15 +8,21 @@
                 Collaborate with other users.
             </p>
 
-            <label class="control-label">Add Collaborators</label>
-            <select name="" id="input" class="form-control" required="required" multiple>
-                <option value=""></option>
-
-                @foreach( $page->potentialCollaborators() as $user )
-                    <option value="{{ $user->id }}">{{ $user->fullName() }}</option>
-                @endforeach
-            </select>
-
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Add Collaborators</label>
+                        <div class="col-md-9">
+                            <select name="collaborators[]" class="form-control selectize" required="required" multiple>
+                                <option value></option>
+                                @foreach( $page->potentialCollaborators() as $user )
+                                    <option value="{{ $user->id }}">{{ $user->fullName() }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="panel-footer clearfix">
             <div class="col-md-12">
@@ -32,5 +38,10 @@
         </div>
     </div>
 
-
 </form>
+
+@push('scripts')
+<script type="text/javascript">
+    $('.selectize').selectize();
+</script>
+@endpush

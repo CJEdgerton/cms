@@ -7,6 +7,9 @@
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
+// Selectize 
+@import "node_modules/selectize/dist/css/selectize.bootstrap3";
+
 // Custom Helper Classes
 @import "helpers/colors/background";
 @import "helpers/colors/text";

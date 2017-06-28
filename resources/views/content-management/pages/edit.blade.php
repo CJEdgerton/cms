@@ -54,7 +54,7 @@
                 @include('content-management.includes.pages.edit.collaboration')
             </div>
         </div>
-
+    </div>
 </div>
 
 @endsection
