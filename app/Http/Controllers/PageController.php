@@ -69,7 +69,9 @@ class PageController extends Controller
     {
         $this->authorize('update', $page);
 
-        return view('content-management.pages.edit')->with('page', $page);
+        return view('content-management.pages.edit')
+            ->with('page', $page)
+            ->with('users', User::all());
     }
 
     /**
@@ -108,6 +110,8 @@ class PageController extends Controller
 
     public function addCollaborators(Request $request, Page $page)
     {
+        $page->removeCollaborators();
+
         foreach( $request->collaborators as $user_id )
         {
             $user = User::find($user_id);

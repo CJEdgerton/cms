@@ -51,13 +51,22 @@ class Page extends Model
 			]);
 		}
 
+		public function removeCollaborators()
+		{
+			\DB::table('page_collaborators')->where('page_id', $this->id)->delete();
+		}
+
 		public function potentialCollaborators()
 		{
-			$owner_id         = $this->owner->id;
-			$collaborator_ids = $this->collaborators->pluck('id')->toArray();
-			$ids              =  array_unique( array_merge($collaborator_ids, [$owner_id]) );
+			$owner_id = $this->owner->id;
+			$ids      =  array_unique( array_merge($this->collaboratorIds(), [$owner_id]) );
 
 			// Get users
 			return User::whereNotIn('id', $ids)->get();
+		}
+
+		public function collaboratorIds()
+		{
+			return $this->collaborators->pluck('id')->toArray();
 		}
 }

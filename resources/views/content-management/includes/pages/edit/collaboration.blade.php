@@ -15,8 +15,14 @@
                         <div class="col-md-9">
                             <select name="collaborators[]" class="form-control selectize" required="required" multiple>
                                 <option value></option>
-                                @foreach( $page->potentialCollaborators() as $user )
-                                    <option value="{{ $user->id }}">{{ $user->fullName() }}</option>
+                                @foreach( $users as $user )
+                                    <option 
+                                        @if( in_array( $user->id, $page->collaboratorIds() ) )
+                                        selected
+                                        @endif 
+                                        value="{{ $user->id }}">
+                                        {{ $user->fullName() }}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
