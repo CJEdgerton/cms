@@ -2,7 +2,7 @@
     <div class="panel-body">
 
         <dl class="dl-horizontal">
-            <dt>Created By:</dt><dd> {{ $page->owner->fullName() }}</dd>
+            <dt>Created By:</dt><dd> {{ $page->owner()->withTrashed()->first()->fullName() }}</dd>
             <dt>Created On:</dt><dd> {{ $page->created_at->toDayDateTimeString() }}</dd>
             <dt>Updated By:</dt><dd> {{ ! is_null( $user = $page->updater ) ? $user->fullName() : "" }}</dd>
             <dt>Last updated:</dt><dd> 

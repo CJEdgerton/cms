@@ -29,7 +29,7 @@
                 <td><a href="/content-management/pages/{{ $page->id }}/edit">{{ $page->name }}</a></td>
                 <td>{{ $page->path }}</td>
                 <td>{{ $page->description }}</td>
-                <td>{{ $page->owner->fullName() }}</td>
+                <td>{{ $page->owner()->withTrashed()->first()->fullName() }}</td>
                 <td>{{ $page->created_at }}</td>
                 <td>{{ ! is_null( $user = $page->updater ) ? $user->fullName() : "" }}</td>
                 <td>{{ $page->updated_at }}</td>

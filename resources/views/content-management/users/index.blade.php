@@ -5,39 +5,28 @@
     <div class="row">
 
     <h1>Manage Users</h1>
-    
-    <table class="table table-bordered table-hover">
-        <thead>
-            <tr>
-                <th>Last Name</th>
-                <th>First Name</th>
-                <th>Email</th>
-                <th>Admin</th>
-                <th>Created At</th>
-                <th>Updated At</th>
-                <th>Edit</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($users as $user)
-            <tr>
-                <td>{{ $user->last_name }}</td>
-                <td>{{ $user->first_name }}</td>
-                <td><a href="mailto:{{$user->email}}">{{ $user->email }}</a></td>
-                <td>{{ $user->isAdmin() }}</td>
-                <td>{{ $user->created_at->format('Y-m-d') }}</td>
-                <td>{{ $user->updated_at->format('Y-m-d') }}</td>
-                <td>
-                    <a href="{{ route('users.edit', ['id' => $user->id]) }}">
-                        <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
-                    </a>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
 
-    {{ $users->links() }}
+    <div role="tabpanel">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active">
+                <a href="#active" aria-controls="active" role="tab" data-toggle="tab">Active</a>
+            </li>
+            <li role="presentation">
+                <a href="#deleted" aria-controls="deleted" role="tab" data-toggle="tab">Deleted</a>
+            </li>
+        </ul>
+    
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="active">
+                @include('content-management.includes.users.index.active')
+            </div>
+            <div role="tabpanel" class="tab-pane" id="deleted">
+                @include('content-management.includes.users.index.deleted')
+            </div>
+        </div>
+    </div>
 
     <a href="{{ route('users.create') }}" class="btn btn-primary pull-right mt-22">Create User</a>
 </div>

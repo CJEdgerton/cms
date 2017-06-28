@@ -23,9 +23,12 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::latest()->paginate(10);
+        $active_users  = User::latest()->paginate(10);
+        $deleted_users = User::onlyTrashed()->latest()->paginate(10);
 
-        return view('content-management.users.index')->with('users', $users);
+        return view('content-management.users.index')
+            ->with('active_users', $active_users)
+            ->with('deleted_users', $deleted_users);
     }
 
     /**
