@@ -1,5 +1,5 @@
-{{-- <form action="{{ route('pages.add_collaborators', ['id' => $page->id]) }}" class="form-horizontal" method="POST"> --}}
-<form class="form-horizontal">
+<form action="{{ route('pages.add_collaborators', ['id' => $page->id]) }}" class="form-horizontal" method="POST">
+    {{ csrf_field() }}
 
     <div class="panel panel-default">
         <div class="panel-body">

@@ -177,14 +177,25 @@ class PageCrudTest extends TestCase
     /** @test */
     public function a_page_owner_can_add_collaborators()
     {
-		$user         = create('App\User', ['is_admin' => 0]);
-		$users_page   = $this->createPage($user);
-		$collaborator = create('App\User', ['is_admin' => 0]);
+		$user          = create('App\User', ['is_admin' => 0]);
+		$users_page    = $this->createPage($user);
+		$collaborators = create('App\User', ['is_admin' => 0], 5);
 
-		$users_page->addCollaborator($collaborator);
+		$this->signIn($user);
+
+		$this->post( 
+			route('pages.add_collaborators', ['id' => $users_page->id]),  
+			['collaborators' => $collaborators->pluck('id')->toArray()] 
+		)
+		->assertRedirect(route('pages.edit', ['id' => $users_page->id]));
 
 		$this->assertDatabaseHas('page_collaborators', [
-			'user_id' => $collaborator->id,
+			'user_id' => $collaborators[0]->id,
+			'page_id' => $users_page->id,
+		]);
+
+		$this->assertDatabaseHas('page_collaborators', [
+			'user_id' => $collaborators[4]->id,
 			'page_id' => $users_page->id,
 		]);
     }
@@ -192,8 +203,6 @@ class PageCrudTest extends TestCase
     /** @test */
     public function a_collaborator_can_edit_and_update_a_page_that_they_dont_own()
     {
-        // $this->withExceptionHandling();
-
 		$user         = create('App\User', ['is_admin' => 0]);
 		$users_page   = $this->createPage($user);
 		$collaborator = create('App\User', ['is_admin' => 0]);

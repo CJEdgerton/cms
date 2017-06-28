@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Page;
+use App\User;
 use Illuminate\Http\File;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoresPage;
@@ -103,6 +104,17 @@ class PageController extends Controller
         $page->delete();
 
         return redirect()->route('pages.index');
+    }
+
+    public function addCollaborators(Request $request, Page $page)
+    {
+        foreach( $request->collaborators as $user_id )
+        {
+            $user = User::find($user_id);
+            $page->addCollaborator($user);
+        }
+
+        return redirect()->route('pages.edit', ['id' => $page->id]);
     }
 
     /* Methods for grabbing public page */
