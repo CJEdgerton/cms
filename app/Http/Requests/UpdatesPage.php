@@ -38,13 +38,15 @@ class UpdatesPage extends FormRequest
     {
         $page_helper = new PageHelpers;
 
+        $active_status = auth()->user()->is_admin ? $this->active : $page->active;
+
         return $page->update([
             'name'         => $this->name, 
             'path'         => $page_helper->preparePath( $this->name, $this->path ),
             'description'  => $this->description, 
             'main_content' => $this->main_content,
             'updated_by'   => auth()->id(),
-            'active'       => $this->active,
+            'active'       => $active_status,
         ]);
     }
 }

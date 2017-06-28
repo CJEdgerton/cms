@@ -46,23 +46,25 @@
                 </div>
             </div>
 
-            <div class="form-group">
-                <label for="active" class="col-md-2 control-label">Active?</label>    
-                <div class="col-md-8">
-                    <select name="active" class="form-control">
-                        <option 
-                            {{ $page->active === 0 ? 'selected' : '' }} 
-                            value="0">
-                            No
-                        </option>
-                        <option 
-                            {{ $page->active === 1 ? 'selected' : '' }} 
-                            value="1">
-                            Yes
-                        </option>
-                    </select>
+            @if( auth()->user()->is_admin )
+                <div class="form-group">
+                    <label for="active" class="col-md-2 control-label">Active?</label>    
+                    <div class="col-md-8">
+                        <select name="active" class="form-control">
+                            <option 
+                                {{ $page->active === 0 ? 'selected' : '' }} 
+                                value="0">
+                                No
+                            </option>
+                            <option 
+                                {{ $page->active === 1 ? 'selected' : '' }} 
+                                value="1">
+                                Yes
+                            </option>
+                        </select>
+                    </div>
                 </div>
-            </div>
+            @endif
 
             <hr>
 

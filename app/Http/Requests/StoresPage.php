@@ -39,13 +39,15 @@ class StoresPage extends FormRequest
 
         $page_helper = new PageHelpers;
 
+        $active_status = auth()->user()->is_admin ? $this->active : 0;
+
         $page = Page::create([
             'name'         => $this->name, 
             'path'         => $page_helper->preparePath( $this->name, $this->path ),
             'description'  => $this->description, 
             'main_content' => $this->main_content, 
             'created_by'   => auth()->id(),
-            'active'       => $this->active,
+            'active'       => $active_status,
         ]);
 
         return $page;
