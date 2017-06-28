@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('content-management.layouts.app')
 
 @section('content')
 <div class="container">
@@ -11,7 +11,15 @@
                     You are logged in!
                 </div>
             </div>
+
         </div>
     </div>
 </div>
 @endsection
+
+
+@push('scripts')
+<script type="text/javascript">
+    $('.selectize').selectize();
+</script>
+@endpush

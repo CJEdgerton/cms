@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Page;
+use App\User;
 use Illuminate\Http\File;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoresPage;
@@ -27,7 +28,7 @@ class PageController extends Controller
         if( auth()->user()->is_admin )
             $pages = Page::latest()->paginate(10);
         else
-            $pages = Page::where('created_by', auth()->id())->latest()->paginate(10); 
+            $pages = auth()->user()->allPages()->paginate(10);
 
         return view('content-management.pages.index')
             ->with('pages', $pages);
@@ -68,7 +69,9 @@ class PageController extends Controller
     {
         $this->authorize('update', $page);
 
-        return view('content-management.pages.edit')->with('page', $page);
+        return view('content-management.pages.edit')
+            ->with('page', $page)
+            ->with('users', User::all());
     }
 
     /**
@@ -103,6 +106,19 @@ class PageController extends Controller
         $page->delete();
 
         return redirect()->route('pages.index');
+    }
+
+    public function addCollaborators(Request $request, Page $page)
+    {
+        $page->removeCollaborators();
+
+        foreach( $request->collaborators as $user_id )
+        {
+            $user = User::find($user_id);
+            $page->addCollaborator($user);
+        }
+
+        return redirect()->route('pages.edit', ['id' => $page->id]);
     }
 
     /* Methods for grabbing public page */

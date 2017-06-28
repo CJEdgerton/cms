@@ -33,6 +33,7 @@ Route::get('/', function () {
 Route::get('/home', 'HomeController@index')->name('home');
 
 // Pages
+	Route::post('content-management/pages/{page}/add-collaborators', 'PageController@addCollaborators')->name('pages.add_collaborators');
 	Route::resource('content-management/pages', 'PageController');
 
 // Users
