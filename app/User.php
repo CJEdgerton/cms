@@ -53,4 +53,11 @@ class User extends Authenticatable
         {
             return $this->is_admin ? 'Yes' : 'No';
         }
+
+        public function allPages()
+        {
+            return collect( 
+                array_merge( $this->pages->all(), $this->collaborations->all() ) 
+            );
+        }
 }

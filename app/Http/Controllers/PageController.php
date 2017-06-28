@@ -28,7 +28,7 @@ class PageController extends Controller
         if( auth()->user()->is_admin )
             $pages = Page::latest()->paginate(10);
         else
-            $pages = Page::where('created_by', auth()->id())->latest()->paginate(10); 
+            $pages = auth()->user()->allPages()->paginate(10);
 
         return view('content-management.pages.index')
             ->with('pages', $pages);
