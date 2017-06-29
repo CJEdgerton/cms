@@ -37,6 +37,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 	Route::resource('content-management/pages', 'PageController');
 
 // Users
+	Route::get('content-management/users/{user}/restore', 'UserController@restore')->name('users.restore');
 	Route::resource('content-management/users', 'UserController');
 
 // Utilities

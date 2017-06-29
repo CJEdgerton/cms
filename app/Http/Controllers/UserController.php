@@ -60,8 +60,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit(Request $request)
     {
+        $user = User::withTrashed()->find($request->user);
         return view('content-management.users.edit')->with('user', $user);
     }
 
@@ -90,5 +91,13 @@ class UserController extends Controller
         $user->delete();
 
         return redirect()->route('users.index');
+    }
+
+    public function restore(Request $request)
+    {
+        $user = User::withTrashed()->find($request->user);
+        $user->restore();
+        
+        return redirect()->route('users.edit', ['id' => $user->id]);
     }
 }

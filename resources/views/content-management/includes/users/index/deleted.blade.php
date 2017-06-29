@@ -12,10 +12,10 @@
     </thead>
     <tbody>
         @foreach($deleted_users as $user)
-        <tr>
+        <tr class="js-user-row cursor-pointer" data-user-id="{{ $user->id }}">
             <td>{{ $user->last_name }}</td>
             <td>{{ $user->first_name }}</td>
-            <td><a href="mailto:{{$user->email}}">{{ $user->email }}</a></td>
+            <td>{{ $user->email }}</td>
             <td>{{ $user->isAdmin() }}</td>
             <td>{{ $user->created_at->format('Y-m-d') }}</td>
             <td>{{ $user->updated_at->format('Y-m-d') }}</td>
@@ -30,3 +30,12 @@
 </table>
 
 {{ $deleted_users->links() }}
+
+@push('scripts')
+<script>
+    $('tr.js-user-row').click(function() {
+        user_id = $(this).data('user-id');
+        window.location = '/content-management/users/' + user_id + '/edit';
+    });
+</script>
+@endpush

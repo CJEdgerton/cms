@@ -119,8 +119,50 @@ class UserCrudTest extends TestCase
         $this->delete(route('users.destroy', ['id' => $user->id]))
             ->assertRedirect( route('users.index') );
 
-        $this->assertDatabaseMissing('users', ['email' => $user->email]);
+        $this->assertDatabaseHas('users', [
+            'email' => $user->email,
+        ]);
 
+        $this->assertDatabaseMissing('users', [
+            'email' => $user->email,
+            'deleted_at' => null,
+        ]);
+
+    }
+
+    /** @test */
+    public function an_admin_can_restore_a_deleted_user()
+    {
+        $admin = create('App\User', ['is_admin' => 1]);
+        $user  = create('App\User', [
+            'is_admin'   => 0, 
+            'deleted_at' => Carbon::now()
+        ]);
+
+        $this->signIn($admin);
+
+        $this->get( route('users.restore', ['id' => $user->id]) )
+            ->assertRedirect( route('users.edit', ['id' => $user->id]) );
+
+        $this->assertDatabaseHas('users',[
+            'id'         => $user->id,
+            'deleted_at' => null,
+        ]);
+    }
+
+    /** @test */
+    public function a_non_admin_cannot_restore_a_deleted_user()
+    {
+        $this->withExceptionHandling();
+        $user       = create('App\User', ['is_admin' => 0]);
+        $other_user = create('App\User', [
+            'is_admin'   => 0, 
+            'deleted_at' => Carbon::now()
+        ]);
+
+        $this->signIn($user);
+
+        $this->get( route('users.restore', ['id' => $other_user->id]) )->assertRedirect('home');
     }
 
 }
