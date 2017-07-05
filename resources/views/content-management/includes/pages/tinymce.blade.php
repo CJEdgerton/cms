@@ -11,6 +11,7 @@
             'insertdatetime media nonbreaking save table contextmenu directionality',
             'template paste textcolor colorpicker textpattern imagetools toc help spellchecker save'
         ],
+        contextmenu: "link bold italic | image | inserttable cell row column deletetable",
         // menu: {
         //     file: {title: 'File', items: 'print'},
         //     edit: {title: 'Edit', items: 'undo redo | cut copy paste pastetext | selectall'},
@@ -23,8 +24,8 @@
         toolbar1: 'save | undo redo | insert | styleselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media | print preview fullscreen | spellchecker help',
         image_advtab: true,
         templates: [
-            { title: 'Test template 1', content: 'Test 1' },
-            { title: 'Test template 2', content: 'Test 2' }
+            { title: 'Panel - Basic', content: '<div class="panel panel-default"><div class="panel-body">Your content goes here</div></div>' },
+            { title: 'Panel - With Header', content: '<div class="panel panel-default"> <div class="panel-heading"> <h3 class="panel-title">Panel title</h3> </div> <div class="panel-body"> Panel content </div> </div>' }
         ],
         content_css: [
             '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',

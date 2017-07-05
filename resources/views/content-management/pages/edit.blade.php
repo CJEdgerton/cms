@@ -36,6 +36,11 @@
                     <span class="glyphicon glyphicon-user"></span> Collaborate
                 </a>
             </li>
+            <li>
+                <a href="{{ route('pages.preview', ['url_path' => $page->path])}}" target="_blank">
+                    <span class="glyphicon glyphicon-eye-open"></span> Preview
+                </a>
+            </li>
         </ul>
 
         <!-- Tab panes -->
