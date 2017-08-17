@@ -25,11 +25,10 @@ class StoresUser extends FormRequest
     public function rules()
     {
         return [
-            'is_admin'         => 'required',
-            'last_name'        => 'required|string',
-            'first_name'       => 'required|string',
-            'password'         => 'required|string',
-            'confirm_password' => 'required|string|same:password',
+            'is_admin'   => 'required',
+            'last_name'  => 'required|string',
+            'first_name' => 'required|string',
+            'email'      => 'required|string|email',
         ];
     }
 
@@ -40,7 +39,6 @@ class StoresUser extends FormRequest
             'last_name'  => $this->last_name,
             'first_name' => $this->first_name,
             'email'      => $this->email,
-            'password'   => bcrypt($this->password),
         ]);
 
         return $user;
@@ -49,7 +47,7 @@ class StoresUser extends FormRequest
     public function messages()
     {
         return [
-            'confirm_password.same' => 'Passwords are not the same!',
+            //
         ];
     }
 } 
