@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\User;
+use App\Events\UserCreated;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoresUser extends FormRequest
@@ -40,6 +41,8 @@ class StoresUser extends FormRequest
             'first_name' => $this->first_name,
             'email'      => $this->email,
         ]);
+
+        event(new UserCreated($user));
 
         return $user;
     }
