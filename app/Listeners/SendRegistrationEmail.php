@@ -28,7 +28,16 @@ class SendRegistrationEmail
      */
     public function handle(UserCreated $event)
     {
-        Mail::to($event->user->email)
-            ->send(new RegistrationEmail($event->user));
+        // This creates the token and the database entry
+        $token = app('auth.password.broker')->createToken($event->user); 
+
+        // Create link for password resetting
+        $registration_url = env('APP_URL') . '/password/reset/' . $token;
+        // $response = $this->broker()->sendResetLink($event->user);
+
+        // dd( $registration_url );
+
+        // Send out email with link
+        Mail::to($event->user->email)->send( new RegistrationEmail($event->user, $registration_url) );
     }
 }

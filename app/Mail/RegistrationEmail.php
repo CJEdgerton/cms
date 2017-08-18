@@ -17,9 +17,10 @@ class RegistrationEmail extends Mailable
      *
      * @return void
      */
-    public function __construct(User $user)
+    public function __construct(User $user, String $registration_url)
     {
         $this->user = $user;
+        $this->registration_url = $registration_url;
     }
 
     /**
@@ -30,6 +31,10 @@ class RegistrationEmail extends Mailable
     public function build()
     {
         return $this->from('admin@cms.com')
-                ->view('emails.users.registration');
+                ->view('emails.users.registration')
+                ->with([
+                    'user'             => $this->user,
+                    'registration_url' => $this->registration_url,
+                ]);
     }
 }
