@@ -19,10 +19,6 @@ class PendingUserController extends Controller
 
     public function approveRegistration(PendingUser $pending_user)
     {
-        // dd( $pending_user );
-
-        // validate that the user is an admin
-
         // add the pending user to the users table
 	        $user = User::create([
 				'last_name'  => $pending_user->last_name,
@@ -38,5 +34,7 @@ class PendingUserController extends Controller
         	Mail::to($user->email)->send( new ApprovedRegistrationEmail($user) ); 
 
         // redirect to the users.index page with a flash message of success
+	        flash('User activated', 'success');
+	        return redirect()->route('users.index');
     }
 }
