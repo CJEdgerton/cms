@@ -36,6 +36,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 	Route::post('content-management/pages/{page}/add-collaborators', 'PageController@addCollaborators')->name('pages.add_collaborators');
 	Route::resource('content-management/pages', 'PageController');
 
+// Pending Users
+	Route::put('content-management/pending-users/{pending_user}/approve-registration', 'PendingUserController@approveRegistration')->name('pending_users.approve_registration');
+
 // Users
 	Route::get('content-management/users/{user}/restore', 'UserController@restore')->name('users.restore');
 	Route::resource('content-management/users', 'UserController');

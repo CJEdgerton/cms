@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\PendingUser;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoresUser;
 use App\Http\Requests\UpdatesUser;
@@ -25,10 +26,12 @@ class UserController extends Controller
     {
         $active_users  = User::latest()->paginate(10);
         $deleted_users = User::onlyTrashed()->latest()->paginate(10);
+        $pending_users = PendingUser::latest()->paginate(10);
 
         return view('content-management.users.index')
             ->with('active_users', $active_users)
-            ->with('deleted_users', $deleted_users);
+            ->with('deleted_users', $deleted_users)
+            ->with('pending_users', $pending_users);
     }
 
     /**
