@@ -29,7 +29,7 @@ class RegistrationTest extends TestCase
         $pending_user = $this->createPendingUser();
 
         $this->post(route('register'), $pending_user)
-            ->assertRedirectTo('welcome');
+            ->assertRedirect('/');
 
         $this->assertDatabaseHas('pending_users', ['email' => $pending_user['email']] );
     }
@@ -39,22 +39,19 @@ class RegistrationTest extends TestCase
     {
         $this->withExceptionHandling();
 
-        $admin = create('App\User', ['is_admin' => 1]);
+        $admin_user     = create('App\User', ['is_admin' => 1]);
+        $non_admin_user = create('App\User', ['is_admin' => 0]);
+        $pending_user   = PendingUser::create($this->createPendingUser());
 
-        $pending_user = PendingUser::create($this->createPendingUser());
-
+        $this->signIn($non_admin_user);
         $this->put( route('pending_users.approve_registration', ['id' => $pending_user->id]))
-            ->assertRedirect('login');
+            ->assertRedirect('home');
 
-        $this->signIn($admin);
-
+        $this->signIn($admin_user);
         $this->put( route('pending_users.approve_registration', ['id' => $pending_user->id]))
             ->assertRedirect(route('users.index'));
 
         $this->assertDatabaseHas('users', ['email' => $pending_user->email]);
         $this->assertDatabaseMissing('pending_users', ['email' => $pending_user->email]);
-
-
     }
-
 }

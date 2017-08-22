@@ -25,6 +25,17 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     ];
 });
 
+$factory->define(App\PendingUser::class, function (Faker\Generator $faker) {
+    static $password;
+
+    return [
+		'last_name'      => $faker->lastName,
+		'first_name'     => $faker->name,
+		'email'          => $faker->unique()->safeEmail,
+		'password'       => $password ?: $password = bcrypt('secret'),
+    ];
+});
+
 $factory->define(App\Page::class, function (Faker\Generator $faker) {
 	$name   = $faker->sentence;
 	$path   = (new App\Utilities\PageHelpers)->preparePath($name);
