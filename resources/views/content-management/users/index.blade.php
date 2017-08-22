@@ -15,6 +15,9 @@
             <li role="presentation">
                 <a href="#deleted" aria-controls="deleted" role="tab" data-toggle="tab">Deleted</a>
             </li>
+            <li role="presentation">
+                <a href="#pending" aria-controls="pending" role="tab" data-toggle="tab">Pending</a>
+            </li>
         </ul>
     
         <!-- Tab panes -->
@@ -24,6 +27,9 @@
             </div>
             <div role="tabpanel" class="tab-pane" id="deleted">
                 @include('content-management.includes.users.index.deleted')
+            </div>
+            <div role="tabpanel" class="tab-pane" id="pending">
+                @include('content-management.includes.users.index.pending')
             </div>
         </div>
     </div>

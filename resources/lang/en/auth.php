@@ -14,6 +14,7 @@ return [
     */
 
     'failed' => 'These credentials do not match our records.',
+    'registration_pending' => 'Your registration is still pending approval.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
 
 ];
