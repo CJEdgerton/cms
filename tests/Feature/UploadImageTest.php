@@ -20,7 +20,7 @@ class UploadImageTest extends TestCase
             'image' => UploadedFile::fake()->image('avatar.jpg')
         ]);
 
-        $path =  str_replace("http://localhost/", "", asset($response->original) ); 
+        $path =  str_replace( env('APP_URL') , "", asset($response->original) ); 
 
         // Assert the file was stored...
         Storage::disk('public')->assertExists($path);
