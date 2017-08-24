@@ -29,7 +29,7 @@ class StoresUser extends FormRequest
             'is_admin'   => 'required',
             'last_name'  => 'required|string',
             'first_name' => 'required|string',
-            'email'      => 'required|string|email',
+            'email'      => 'required|string|email|unique:users',
         ];
     }
 
