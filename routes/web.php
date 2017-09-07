@@ -16,13 +16,13 @@ Route::get('/', function () {
 });
 
 // Authentication Routes...
-	$this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
-	$this->post('login', 'Auth\LoginController@login');
-	$this->post('logout', 'Auth\LoginController@logout')->name('logout');
+	$this->get('content-management/login', 'Auth\LoginController@showLoginForm')->name('login');
+	$this->post('content-management/login', 'Auth\LoginController@login');
+	$this->post('content-management/logout', 'Auth\LoginController@logout')->name('logout');
 
 	// Registration Routes...
-	$this->get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-	$this->post('register', 'Auth\RegisterController@register');
+	$this->get('content-management/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+	$this->post('content-management/register', 'Auth\RegisterController@register');
 
 	// Password Reset Routes...
 	$this->get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
@@ -63,7 +63,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 	// Route::get('{url_path}', [
 	//     'uses' => 'PageController@getPage' 
 	// ])->where('url_path', '([A-Za-z0-9\-\/]+)');
-
-Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -50,7 +50,7 @@ class LoginTest extends TestCase
             'password' => 'secret',
         ]));
 
-        $this->get('/login')
+        $this->get(route('login'))
             ->assertSee('Your registration is still pending approval.');
     }
 
