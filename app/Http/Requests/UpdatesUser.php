@@ -29,7 +29,7 @@ class UpdatesUser extends FormRequest
             'is_admin'   => 'required',
             'last_name'  => 'required|string',
             'first_name' => 'required|string',
-            'email'      => 'required|string',
+            'email'      => 'required|string|unique:users',
         ];
     }
 
